@@ -54,46 +54,61 @@
                 <li><a href="forms.html">Forms</a></li>
             </ul>
         </div>
-
-
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
             <h1 class="page-header">Forms: Registration Forms</h1>
-
-
             <ul class="nav nav-tabs">
                 <li role="presentation"><a href="forms.html">Forms</a></li>
                 <li role="presentation" class="active"><a href="form-fields.html">Fileds</a></li>
             </ul>
 
-
-            <div class="container">
-
-                <form role="form">
-                    <div class="form-group">
-                        <label for="FirstName">Frist Name:</label>
+            <div class="table table-responsive">
+                <table>
+                    <div role="form" class="form-inline">
+                        <label for="FirstName">First Name:</label><br>
                         <input type="text" class="form-control" id="FirstName" placeholder="First Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="LastName">Last Name:</label>
-                        <input type="text" class="form-control" id="LastName" placeholder="Last Name">
-                    </div>
-                </form>
-            </div>
-
-
-            <div class="tab-content">
-                <form class="form-inline">
-                    <div class="form-group">
-                    <input type="text" class="form-control" id="LastName" placeholder="Last Name">
-                    </div>
-                    <div class="form-group">
                         <span class="glyphicon glyphicon-pencil"></span>
                         <span class="glyphicon glyphicon-plus"></span>
                         <span class="glyphicon glyphicon-remove"></span>
                         <span class="glyphicon glyphicon-remove"></span>
                     </div>
-                </form>
+                    <div role="form" class="form-inline">
+                        <label for="LastName">Last Name:</label><br>
+                        <input type="text" class="form-control" id="LastName" placeholder="Last Name">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span class="glyphicon glyphicon-remove"></span>
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </div>
+                    <div role="form" class="form-inline">
+                        <div class="form-group">
+                            <label for="DateOfBirth">Date of Birth:</label><br>
+                            <select class="form-control" id="DateOfBirth">
+                                <!-- not sure if col-xs-6 can do this in one row-->
+                                <option>Select Date</option>
+                                <option>1</option>
+                            </select>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </div>
+                    </div>
+                    <div role="form" class="form-inline">
+                        <div class="form-group">
+                            <label for="Gender">Gender:</label><br>
+                            <select class="form-control" id="Gender">
+                                <!-- not sure if col-xs-6 can do this in one row-->
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </div>
+                    </div>
+
+                </table>
             </div>
         </div>
     </div>

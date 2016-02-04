@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- this meta tag is to make phone rendering good -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Admin</title> <!-- is on for the tab in the window -->
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- from cdn -->
+    <!-- href is directing the location -->
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="profile.html">Username</a></li>
+                <li><a href="home.html">Logout</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="home.html">Home<span class="sr-only">(current)</span></a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="forms.html">Forms</a></li>
+            </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            <h1 class="page-header">Admin</h1>
+            <h2>Users</h2>
+
+            <div class="btn-group dropdown">
+                <button type="button" class="btn btn-default">Dropdown</button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <!-- Dropdown menu links -->
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                    <li><a href="forms.html">Forms</a></li>
+                </ul>
+            </div>
+            <div class="table table-responsive">
+                <table class="table table-striped">
+                    <tr class="active">
+                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Username</th>
+                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Password</th>
+                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Role</th>
+                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Actions</th>
+                    </tr>
+                    <tr>
+                        <td> <input type="text" class="form-control" id="inputUsername" placeholder="Username"> </td>
+                        <td> <input type="password" class="form-control" id="password" placeholder="Password"> </td>
+                        <td> <input type="text" class="form-control" id="role" placeholder="role1, role2"> </td>
+                        <td> <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-plus"></span></button>
+                             <button type="button" class="btn btn-default" aria-label="Right Align">
+                                <span class="glyphicon glyphicon-ok"></span></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Alice </td>
+                        <td>  </td>
+                        <td> Student </td>
+                        <td><button type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove"></span></button>
+                        <button type="button" class="btn btn-default" aria-label="Right Align">
+                            <span class="glyphicon glyphicon-pencil"></span></button>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td> Bob </td>
+                        <td>  </td>
+                        <td> Faculty | Admin </td>
+                        <td><button type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove"></span></button>
+                            <button type="button" class="btn btn-default" aria-label="Right Align">
+                                <span class="glyphicon glyphicon-pencil"></span></button>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td> Charlie </td>
+                        <td>  </td>
+                        <td>  </td>
+                        <td><button type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-remove"></span></button>
+                            <button type="button" class="btn btn-default" aria-label="Right Align">
+                                <span class="glyphicon glyphicon-pencil"></span></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
+

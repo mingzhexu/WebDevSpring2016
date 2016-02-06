@@ -37,9 +37,6 @@
                 <li><a href="profile.html">Username</a></li>
                 <li><a href="home.html">Logout</a></li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
         </div>
     </div>
 </nav>
@@ -58,58 +55,101 @@
             <h1 class="page-header">Forms: Registration Forms</h1>
             <ul class="nav nav-tabs">
                 <li role="presentation"><a href="forms.html">Forms</a></li>
-                <li role="presentation" class="active"><a href="form-fields.html">Fileds</a></li>
+                <li role="presentation" class="active"><a href="form-fields.html">Fields</a></li>
             </ul>
-
-            <div class="table table-responsive">
-                <table>
-                    <div role="form" class="form-inline">
-                        <label for="FirstName">First Name:</label><br>
-                        <input type="text" class="form-control" id="FirstName" placeholder="First Name">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                        <span class="glyphicon glyphicon-plus"></span>
-                        <span class="glyphicon glyphicon-remove"></span>
-                        <span class="glyphicon glyphicon-remove"></span>
+            <form role="form">
+                <div class="form-group">
+                    <label class="control-label col-md-10" for="FirstName">First Name:</label>
+                    <div class="col-md-6">
+                    <input type="text" class="form-control" id="FirstName" placeholder="First Name">
                     </div>
-                    <div role="form" class="form-inline">
-                        <label for="LastName">Last Name:</label><br>
+                    <ul class="col-md-6">
+                        <li class="glyphicon glyphicon-align-justify pull-right"></li>
+                        <li class="glyphicon glyphicon-remove pull-right"></li>
+                        <li class="glyphicon glyphicon-plus pull-right"></li>
+                        <li class="glyphicon glyphicon-pencil pull-right"></li>
+                    </ul>
+
+                    <label class="control-label col-md-10" for="LastName">Last Name:</label>
+                    <div class="col-md-6">
                         <input type="text" class="form-control" id="LastName" placeholder="Last Name">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                        <span class="glyphicon glyphicon-plus"></span>
-                        <span class="glyphicon glyphicon-remove"></span>
-                        <span class="glyphicon glyphicon-remove"></span>
                     </div>
-                    <div role="form" class="form-inline">
-                        <div class="form-group">
-                            <label for="DateOfBirth">Date of Birth:</label><br>
-                            <select class="form-control" id="DateOfBirth">
-                                <!-- not sure if col-xs-6 can do this in one row-->
-                                <option>Select Date</option>
-                                <option>1</option>
-                            </select>
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            <span class="glyphicon glyphicon-plus"></span>
-                            <span class="glyphicon glyphicon-remove"></span>
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </div>
-                    </div>
-                    <div role="form" class="form-inline">
-                        <div class="form-group">
-                            <label for="Gender">Gender:</label><br>
-                            <select class="form-control" id="Gender">
-                                <!-- not sure if col-xs-6 can do this in one row-->
-                                <option>Male</option>
-                                <option>Female</option>
-                            </select>
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            <span class="glyphicon glyphicon-plus"></span>
-                            <span class="glyphicon glyphicon-remove"></span>
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </div>
-                    </div>
+                    <ul class="col-md-6">
+                        <li class="glyphicon glyphicon-align-justify pull-right"></li>
+                        <li class="glyphicon glyphicon-remove pull-right"></li>
+                        <li class="glyphicon glyphicon-plus pull-right"></li>
+                        <li class="glyphicon glyphicon-pencil pull-right"></li>
+                    </ul>
 
-                </table>
-            </div>
+                    <label class="control-label col-md-10" for="DateOfBirth">Date of Birth:</label>
+                    <div class="col-md-6">
+                        <input type="date" class="form-control" id="DateOfBirth" placeholder="Select Date">
+                    </div>
+                    <ul class="col-md-6">
+                        <li class="glyphicon glyphicon-align-justify pull-right"></li>
+                        <li class="glyphicon glyphicon-remove pull-right"></li>
+                        <li class="glyphicon glyphicon-plus pull-right"></li>
+                        <li class="glyphicon glyphicon-pencil pull-right"></li>
+                    </ul>
+                    <label class="control-label col-md-12" for="Gender">Gender:</label>
+                    <div class="col-md-6">
+                    <select class="form-control" id="Gender">
+                        <!-- not sure if col-xs-6 can do this in one row-->
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    </div>
+                    <div class="col-md-6">
+                    <ul>
+                        <li class="glyphicon glyphicon-align-justify pull-right"></li>
+                        <li class="glyphicon glyphicon-remove pull-right"></li>
+                        <li class="glyphicon glyphicon-plus pull-right"></li>
+                        <li class="glyphicon glyphicon-pencil pull-right"></li>
+                    </ul>
+                    </div>
+                    <label class="control-label col-md-12" for="roles">Roles:</label>
+                    <div class="col-md-6">
+                        <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="admin" id="roles" value="admin" checked> Admin
+                        </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                            <input type="checkbox" name="student" id="roles1" value="student"> Student
+                        </label>
+                        </div>
+                        <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="user" id="roles2" value="user" checked> User
+                        </label>
+                        </div>
+                    </div>
+                    <ul class="col-md-6">
+                        <li class="glyphicon glyphicon-align-justify pull-right"></li>
+                        <li class="glyphicon glyphicon-remove pull-right"></li>
+                        <li class="glyphicon glyphicon-plus pull-right"></li>
+                        <li class="glyphicon glyphicon-pencil pull-right"></li>
+                    </ul>
+                    <label class="control-label col-md-12">License Agreement: </label>
+                    <div class = "col-md-6">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>YES
+                            </label><br>
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">NO
+                            </label>
+                        </div>
+                    </div>
+                    <ul class="col-md-6">
+                        <li class="glyphicon glyphicon-align-justify pull-right"></li>
+                        <li class="glyphicon glyphicon-remove pull-right"></li>
+                        <li class="glyphicon glyphicon-plus pull-right"></li>
+                        <li class="glyphicon glyphicon-pencil pull-right"></li>
+                    </ul>
+                </div>
+            </form>
         </div>
     </div>
 </div>

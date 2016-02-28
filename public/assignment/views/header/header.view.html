@@ -12,11 +12,16 @@
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/register">Register</a></li>
-                <li><a href="#/login">Login</a></li>
-                <li><a href="#/home">Logout</a></li>
-                <li><a href="#/profile">Username</a></li>
-                <li><a href="#/admin">Admin</a></li>
+                <li ng-class="{'active': selectedTab == 'register'}">
+                    <a ng-click="selectedTab = 'register'" href="#/register">Register</a></li>
+                <li ng-class="{'active': selectedTab == 'login'}">
+                    <a ng-click="selectedTab = 'login'" href="#/login">Login</a></li>
+                <li ng-class="{'active': selectedTab == 'logout'}">
+                    <a ng-click="selectedTab = 'logout'" href="#/home">Logout</a></li>
+                <li ng-class="{'active': selectedTab == 'username'}">
+                    <a ng-click="selectedTab = 'username'" href="#/profile">Username</a></li>
+                <li ng-class="{'active': selectedTab == 'admin'}">
+                    <a ng-click="selectedTab = 'admin'" href="#/admin">Admin</a></li>
             </ul>
         </div>
     </div>

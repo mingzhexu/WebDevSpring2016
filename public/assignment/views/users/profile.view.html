@@ -45,6 +45,16 @@
                     </div>
                 </div>
             </form>
+
+            <li ng-repeat="person in users">
+                <a href="#/profile/{{$index}}">{{person.username}}</a>
+            </li>
+
+            <div>
+                <h2>users</h2>
+                {{user}}
+                {{user.username}}
+            </div>
         </div>
     </div>
 </div>

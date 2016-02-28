@@ -6,7 +6,12 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope) {
-        console.log("this is profile controller");
+    function ProfileController($scope, $routeParams, $location, UserServices)
+    {
+        $scope.id = $routeParams.num;
+        $scope.user = UserServices.findUserById($routeParams.id);
+
+        $scope.$location = $location;
+        console.log("profile controller: " + $location.url());
     }
 })();

@@ -55,7 +55,25 @@
                                 <span class="glyphicon glyphicon-pencil"></span></button>
                         </td>
                     </tr>
+                    <tr ng-repeat="person in users">
+                        <td>{{person.username}}</td>
+                        <td>{{person.password}}</td>
+                        <td>{{person.roles}}</td>
+                        <td>
+                            <button ng-click="deleteUser(userId)" class="btn btn-danger">
+                                Delete
+                            </button>
+                            <button ng-click="selectUser(userId)" class="btn btn-info">
+                                Select
+                            </button>
+                        </td>
+                    </tr>
                 </table>
+                <li ng-repeat="person in users">
+                    <a href="#/profile/{{$index}}">{{person.username}}</a>
+                </li>
+                {{users}}
+
             </div>
         </div>
     </div>

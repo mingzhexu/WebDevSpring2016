@@ -14,45 +14,14 @@
                         <th><span class="glyphicon glyphicon-triangle-bottom"></span>Actions</th>
                     </tr>
                     <tr>
-                        <td> <input type="text" class="form-control" id="inputUsername" placeholder="Username"> </td>
-                        <td> <input type="password" class="form-control" id="password" placeholder="Password"> </td>
-                        <td> <input type="text" class="form-control" id="role" placeholder="role1, role2"> </td>
-                        <td> <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <td> <input type="text" class="form-control" ng-model="person.username" placeholder="username"> </td>
+                        <td> <input type="password" class="form-control" ng-model="person.password" placeholder="password"> </td>
+                        <td> <input type="text" class="form-control" ng-model="person.roles" placeholder="role1, role2"> </td>
+
+                        <td> <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="addUser(person)">
                                 <span class="glyphicon glyphicon-plus"></span></button>
-                             <button type="button" class="btn btn-default" aria-label="Right Align">
+                             <button type="button" class="btn btn-default" aria-label="Right Align" ng-click="updateUser(person)">
                                 <span class="glyphicon glyphicon-ok"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Alice </td>
-                        <td>  </td>
-                        <td> Student </td>
-                        <td><button type="button" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-remove"></span></button>
-                        <button type="button" class="btn btn-default" aria-label="Right Align">
-                            <span class="glyphicon glyphicon-pencil"></span></button>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td> Bob </td>
-                        <td>  </td>
-                        <td> Faculty | Admin </td>
-                        <td><button type="button" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-remove"></span></button>
-                            <button type="button" class="btn btn-default" aria-label="Right Align">
-                                <span class="glyphicon glyphicon-pencil"></span></button>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td> Charlie </td>
-                        <td>  </td>
-                        <td>  </td>
-                        <td><button type="button" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-remove"></span></button>
-                            <button type="button" class="btn btn-default" aria-label="Right Align">
-                                <span class="glyphicon glyphicon-pencil"></span></button>
                         </td>
                     </tr>
                     <tr ng-repeat="person in users">
@@ -60,17 +29,15 @@
                         <td>{{person.password}}</td>
                         <td>{{person.roles}}</td>
                         <td>
-                            <button ng-click="deleteUser(userId)" class="btn btn-danger">
-                                Delete
-                            </button>
-                            <button ng-click="selectUser(userId)" class="btn btn-info">
-                                Select
-                            </button>
+                            <button ng-click="deleteUser(person)" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span></button>
+                            <button ng-click="selectUser(person)" class="btn btn-info">
+                                <span class="glyphicon glyphicon-pencil"></span></button>
                         </td>
                     </tr>
                 </table>
                 <li ng-repeat="person in users">
-                    <a href="#/profile/{{$index}}">{{person.username}}</a>
+                    <a href="#/profile/{{}}">{{person.username}}</a>
                 </li>
                 {{users}}
 

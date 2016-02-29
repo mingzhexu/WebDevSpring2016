@@ -12,15 +12,15 @@
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{'active': selectedTab == 'register'}">
+                <li ng-class="{'active': selectedTab == 'register'}" ng-hide = "currentUser">
                     <a ng-click="selectedTab = 'register'" href="#/register">Register</a></li>
-                <li ng-class="{'active': selectedTab == 'login'}">
+                <li ng-class="{'active': selectedTab == 'login'}" ng-hide = "currentUser">
                     <a ng-click="selectedTab = 'login'" href="#/login">Login</a></li>
-                <li ng-class="{'active': selectedTab == 'logout'}">
-                    <a ng-click="selectedTab = 'logout'" href="#/home">Logout</a></li>
-                <li ng-class="{'active': selectedTab == 'username'}">
-                    <a ng-click="selectedTab = 'username'" href="#/profile">Username</a></li>
-                <li ng-class="{'active': selectedTab == 'admin'}">
+                <li ng-class="{'active': selectedTab == 'logout'}" ng-show = "currentUser">
+                    <a ng-click="logout()" href="#/home">Logout</a></li>
+                <li ng-class="{'active': selectedTab == 'username'}" ng-show = "currentUser">
+                    <a ng-click="selectedTab = 'username'" href="#/profile">{{currentUser.username}}</a></li>
+                <li ng-class="{'active': selectedTab == 'admin'}" ng-show="currentUser.roles.indexOf('admin') >= 0">
                     <a ng-click="selectedTab = 'admin'" href="#/admin">Admin</a></li>
             </ul>
         </div>

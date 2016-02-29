@@ -7,6 +7,5 @@
         .controller("SidebarController", SidebarController);
 
     function SidebarController($scope) {
-        console.log("this is sidebar controller");
     }
 })();

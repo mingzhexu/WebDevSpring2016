@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .controller("HomeController", HomeController);
 
-    function HomeController($scope) {
-        $scope.homeHello = "Hello from HomeController"
+    function HomeController($scope, $location) {
+        $scope.$location = $location;
     }
 })();

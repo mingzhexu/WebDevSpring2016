@@ -6,12 +6,44 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $routeParams, $location, UserServices)
+    function ProfileController($scope, $location, UserServices, $rootScope)
     {
-        $scope.id = $routeParams.num;
-        $scope.user = UserServices.findUserById($routeParams.id);
+        $scope.error = null;
+        $scope.message = null;
 
-        $scope.$location = $location;
+        var curUser = function(cur)
+        {
+            $rootScope.currentUser = cur;
+            console.log($rootScope.currentUser);
+        }
+        UserServices.getCurrentUser(curUser);
+
+        if (!$scope.currentUser) {
+            console.log($scope.currentUser);
+            console.log("this check not current user");
+            $location.url("/home");
+        }
+        $scope.update = update;
+
+        function update (user) {
+            // same validation as register
+            $scope.error = null;
+            $scope.message = null;
+
+            var callback = function(target){
+                $rootScope.currentUser = target;
+            }
+            UserServices.updateUser($rootScope.currentUser._id, user, callback);
+            UserServices.setCurrentUser(user,callback);
+            console.log("the update user");
+            console.log(user);
+
+            if (user) {
+                $scope.message = "User updated successfully";
+            } else {
+                $scope.message = "Unable to update the user";
+            }
+        }
         console.log("profile controller: " + $location.url());
     }
 })();

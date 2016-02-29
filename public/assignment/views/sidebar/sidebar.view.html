@@ -2,11 +2,11 @@
     <ul class="nav nav-sidebar">
         <li ng-class="{'active': selectedTab == 'home'}">
             <a ng-click="selectedTab = 'home'" href="#/">Home<span class="sr-only">(current)</span></a></li>
-        <li ng-class="{'active': selectedTab == 'profile'}">
+        <li ng-class="{'active': selectedTab == 'profile'}" ng-show="currentUser">
             <a ng-click="selectedTab = 'profile'" href="#/profile">Profile</a></li>
-        <li ng-class="{'active': selectedTab == 'admin'}">
+        <li ng-class="{'active': selectedTab == 'admin'}" ng-show="currentUser.roles.indexOf('admin') >= 0">
             <a ng-click="selectedTab = 'admin'" href="#/admin">Admin</a></li>
-        <li ng-class="{'active': selectedTab == 'forms'}">
+        <li ng-class="{'active': selectedTab == 'forms'}" ng-show="currentUser">
             <a ng-click="selectedTab = 'forms'" href="#/forms">Forms</a></li>
     </ul>
 </div>

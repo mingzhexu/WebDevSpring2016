@@ -60,12 +60,6 @@
         function findAllUsers(callback)
         {
             console.log("return all users!");
-            /*
-            var arrayLength = users.length;
-            for (var i = 0; i < arrayLength; i++)
-            {
-                users[i].roles = ArraytoString(users[i].roles);
-            }*/
             callback(users);
         }
 
@@ -98,7 +92,7 @@
             {
                 if(users[i]._id == userId)
                 {
-                    console.log("udpate the user");
+                    console.log("update the user");
                     //users[i].username = user.username;
                     console.log(user);
                     users[i] = user;
@@ -129,18 +123,5 @@
         function getCurrentUser (callback) {
             callback($rootScope.currentUser);
         }
-        /*
-        function ArraytoString(roles)
-        {
-            var role;
-            var len = roles.length;
-            for (var i = 0; i < len - 1; i++)
-            {
-                role = role.concat(roles[i]);
-            }
-            role.concat(roles[len - 1]);
-            return role;
-        }
-        */
     }
 })();

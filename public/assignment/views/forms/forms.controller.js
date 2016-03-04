@@ -16,10 +16,10 @@
             var callback = function(response){
                 $scope.form = response;
                 $scope.forms.push($scope.form);
+                console.log($scope.forms);
             }
             FormService.createFormForUser($rootScope.currentUser._id, form, callback);
             $scope.form = "";
-
         }
 
         $scope.selectForm = function(form){
@@ -38,12 +38,13 @@
             $scope.message = null;
             var index = $scope.selectedFormIndex;
             var callback = function(response){
-                console.log("update form at: " + $scope.selectedFormIndex);
-                console.log($scope.form);
+                //console.log("update form at: " + $scope.selectedFormIndex);
+                //console.log($scope.form);
                 $scope.forms[$scope.selectedFormIndex].title = response.title;
             }
-            FormService.updateFormById($scope.forms[index]._id, form, callback);
+            FormService.updateFormById(form._id, form, callback);
             $scope.form = {};
+            console.log($scope.forms);
         }
 
         $scope.deleteForm = function(form){
@@ -51,15 +52,15 @@
             $scope.forms.splice(index, 1);
 
             var callback = function(response){
-                $scope.forms = response;
-                var nest = function(filter){
-                    $scope.forms = filter;
-                }
-                FormService.findAllFormsForUser($rootScope.currentUser._id, nest);
+                console.log(response);
             }
             FormService.deleteFormById(form._id, callback);
-            console.log(form._id);
 
+            var nest = function(filter){
+                console.log($scope.forms);
+                $scope.forms = filter;
+            }
+            FormService.findAllFormsForUser($rootScope.currentUser._id, nest);
         }
     }
 })();

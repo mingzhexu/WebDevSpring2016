@@ -52,15 +52,11 @@
         function deleteFormById(formId, callback){
             var len = forms.length;
             for(var i = 0; i < len; i++){
-                console.log(formId);
-                console.log(forms[i]._id);
                 if(forms[i]._id == formId){
-                  //  var index = forms.indexOf(form);
                     forms.splice(i, 1);
-                    console.log("deleted");
+                    break;
                 }
             }
-            console.log("in the delete service");
             callback(forms);
         }
 
@@ -69,7 +65,6 @@
             for(var i = 0; i < len; i++){
                 if(forms[i]._id == formId){
                     forms[i] = newForm;
-                    console.log("updated");
                 }
             }
             callback(newForm);

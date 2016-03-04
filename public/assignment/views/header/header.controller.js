@@ -15,6 +15,7 @@
             }
             UserServices.setCurrentUser(null, callback);
             $location.url("/home");
+            $scope.form = null;
         }
     }
 })();

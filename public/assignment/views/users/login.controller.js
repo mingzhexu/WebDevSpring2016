@@ -10,6 +10,7 @@
         $scope.login = login;
 
         function login (user) {
+            $scope.message = null;
             var user;
             var callback = function(response){
                 user = response;
@@ -17,7 +18,7 @@
                     $location.url("/profile");
                     $rootScope.currentUser = user;
                 }else{
-                    $location.url("/register");
+                    $scope.message = "Can't find user or wrong password";
                     return;
                 }
             }

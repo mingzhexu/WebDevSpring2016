@@ -1,10 +1,10 @@
 /**
- * Created by mingzhexu on 2/27/16.
+ * Created by mingzhexu on 3/4/16.
  */
 (function()
 {
     angular
-        .module("FormBuilderApp")
+        .module("LearningMgmtApp")
         .factory("UserServices", userService);
 
     function userService($rootScope)
@@ -23,7 +23,7 @@
             {"_id":567, "firstName":"Edward","lastName":"Norton",
                 "username":"ed",     "password":"ed",      "roles": ["student"], "email": ""}
         ];
-
+/*
         var services = {
             findAllUsers : findAllUsers,
             findUserByCredentials: findUserByCredentials,
@@ -49,7 +49,6 @@
                     callback(users[i]);
                 }
             }
-            callback(null);
         }
 
         function findUserById(id, callback)
@@ -124,5 +123,7 @@
         function getCurrentUser (callback) {
             callback($rootScope.currentUser);
         }
+        */
     }
+
 })();

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Register</title> <!-- is on for the tab in the window -->
+    <title>Register</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -13,27 +13,52 @@
             <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+                    <label class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-model="person.username" placeholder="Username">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                    <label class="col-sm-2 control-label">First Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="person.firstname" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Last Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="person.lastname" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" ng-model="person.password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword2" class="col-sm-2 control-label">Verify Password</label>
+                    <label class="col-sm-2 control-label">Verify Password</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" ng-model="person.password2" placeholder="Verify Password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                    <label class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" ng-model="person.email" placeholder="Email">
+                        <input type="password" class="form-control" ng-model="person.email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Are you:</label>
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="optionsRadios" ng-model="person.role" value="option1" checked>Instructor
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" name="optionsRadios" ng-model="person.role" value="option2">Student
+                        </label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,6 +70,8 @@
         </div>
     </div>
 </div>
+</body>
+
 </html>
 
 

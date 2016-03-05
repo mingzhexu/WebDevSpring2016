@@ -5,6 +5,9 @@
     angular
         .module("LearningMgmtApp")
         .controller("LoginController", LoginController);
+    function LoginController($scope){
+
+    }
 /*
     function LoginController($scope, $rootScope, UserServices, $location) {
         $scope.login = login;

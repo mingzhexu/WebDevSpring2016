@@ -6,21 +6,32 @@
         .module("LearningMgmtApp")
         .config(function($routeProvider){
             $routeProvider
+                .when("/home", {
+                    templateUrl: "/project/learningMgmt/views/home/home.view.html",
+                    controller: "HomeController"
+                })
                 .when("/register", {
-                    templateUrl: "/learningMgmt/views/users/register.view.html",
+                    templateUrl: "/project/learningMgmt/views/users/register.view.html",
                     controller: "RegisterController"
                 })
                 .when("/login", {
-                    templateUrl: "/learningMgmt/views/users/login.view.html",
+                    templateUrl: "/project/learningMgmt/views/users/login.view.html",
                     controller: "LoginController"
                 })
                 .when("/profile", {
-                    templateUrl: "/learningMgmt/views/users/profile.view.html",
+                    templateUrl: "/project/learningMgmt/views/users/profile.view.html",
                     controller: "ProfileController"
                 })
                 .when("/", {
-                    templateUrl: "/learningMgmt/views/home/home.view.html",
+                    templateUrl: "/project/learningMgmt/views/home/home.view.html",
                     controller: "HomeController"
+                })
+                .when("/courses", {
+                    templateUrl: "/project/learningMgmt/views/courses/courses.view.html",
+                    controller: "CourseController"
+                })
+                .when("/about", {
+                    templateUrl: "/project/learningMgmt/views/home/about.view.html"
                 })
                 .otherwise({
                     redirectTo: "/"

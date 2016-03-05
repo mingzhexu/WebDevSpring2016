@@ -7,19 +7,23 @@
         .controller("RegisterController", RegisterController);
 
     function RegisterController($scope, $rootScope, $location, UserServices) {
-        console.log("this is Register controller");
 
         $scope.register = register;
 
         function register(user) {
 
             $scope.message = null;
+            console.log($scope.message);
             if (user == null) {
                 $scope.message = "Please fill in the required fields";
                 return;
             }
             if (!user.username) {
                 $scope.message = "Please provide a username";
+                return;
+            }
+            if (!user.email) {
+                $scope.message = "Please provide an email";
                 return;
             }
             if (!user.password || !user.password2) {
@@ -31,6 +35,7 @@
                 return;
             }
             var new_user;
+            /*
             var findUser = function(response){
                 new_user = response;
             }
@@ -44,9 +49,10 @@
             var newUser = function(response) {
                 $rootScope.currentUser = response;
             }
-            UserServices.createUser(user, newUser);
-            UserServices.setCurrentUser(user,newUser);
+            //UserServices.createUser(user, newUser);
+            //UserServices.setCurrentUser(user,newUser);*/
             $location.url("/profile");
         }
+
     }
 })();

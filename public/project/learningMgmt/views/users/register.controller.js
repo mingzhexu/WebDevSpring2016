@@ -6,7 +6,7 @@
         .module("LearningMgmtApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, $rootScope, $location, UserServices) {
+    function RegisterController($scope, $location) {
 
         $scope.register = register;
 
@@ -22,10 +22,6 @@
                 $scope.message = "Please provide a username";
                 return;
             }
-            if (!user.email) {
-                $scope.message = "Please provide an email";
-                return;
-            }
             if (!user.password || !user.password2) {
                 $scope.message = "Please provide a password";
                 return;
@@ -34,6 +30,15 @@
                 $scope.message = "Passwords must match";
                 return;
             }
+            if (!user.email) {
+                $scope.message = "Please provide an email";
+                return;
+            }
+            if (!user.role) {
+                $scope.message = "Please tell us whether you a student or instructor";
+                return;
+            }
+
             var new_user;
             /*
             var findUser = function(response){

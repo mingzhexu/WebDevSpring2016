@@ -2,9 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Courses</title>
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Courses</h1>
 
+            <div class="table table-responsive">
+                <table class="table table-striped">
+                    <tr class="active">
+                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Course</th>
+                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Instructor</th>
+                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>School</th>
+                    </tr>
+                    <tr ng-repeat="course in courses">
+                        <td>{{course.title}}</td>
+                        <td>{{course.instructor}}</td>
+                        <td>{{course.school}}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>

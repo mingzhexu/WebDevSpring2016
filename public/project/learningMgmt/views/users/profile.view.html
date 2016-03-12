@@ -5,6 +5,63 @@
     <title>Profile</title>
 </head>
 <body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Profile</h1>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#/profile">Profile</a></li>
+                <li role="presentation"><a href="#/courses">Enrollments</a></li>
+                <li role="presentation"><a href="#/courses">Accomplishments</a></li>
+            </ul>
+            <form role="form">
+                <div class="form-group">
+                    <label class="control-label col-md-10" for="FirstName">First Name:</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="FirstName" placeholder={{currentUser.firstName}}>
+                    </div>
+                    <label class="control-label col-md-10" for="LastName">Last Name:</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="LastName" placeholder={{currentUser.lastName}}>
+                    </div>
+                    <label class="control-label col-md-10" for="Email">Email:</label>
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" id="Email" placeholder={{currentUser.email}}>
+                    </div>
+                    <label class="control-label col-md-10" for="DateOfBirth">Date of Birth:</label>
+                    <div class="col-md-6">
+                        <input type="date" class="form-control" id="DateOfBirth" placeholder="Select Date">
+                    </div>
+                    <label class="control-label col-md-12" for="Gender">Gender:</label>
+                    <div class="col-md-6">
+                        <select class="form-control" id="Gender">
+                            <!-- not sure if col-xs-6 can do this in one row-->
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                    <label class="control-label col-md-12" for="roles">Role:</label>
+                    <div class="col-md-6">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Student
+                            </label><br>
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Instructor
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-offset-4 col-sm-10">
+                        <button type="submit" ng-click="update(currentUser)" class="btn btn-default">Update</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</html>
+
 
 </body>
 </html>

@@ -8,11 +8,12 @@
     function LoginController($scope){
 
     }
-/*
+
     function LoginController($scope, $rootScope, UserServices, $location) {
         $scope.login = login;
 
         function login (user) {
+            $scope.message = null;
             var user;
             var callback = function(response){
                 user = response;
@@ -20,7 +21,7 @@
                     $location.url("/profile");
                     $rootScope.currentUser = user;
                 }else{
-                    $location.url("/register");
+                    $scope.message = "Incorrect username or password";
                     return;
                 }
             }
@@ -28,5 +29,5 @@
         }
         console.log("this is login controller");
     }
-    */
+
 })();

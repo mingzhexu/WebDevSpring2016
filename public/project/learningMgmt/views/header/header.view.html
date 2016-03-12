@@ -19,7 +19,7 @@
                 <li ng-class="{'active': selectedTab == 'logout'}" ng-show = "currentUser">
                     <a ng-click="logout()" href="#/home">Logout</a></li>
                 <li ng-class="{'active': selectedTab == 'username'}" ng-show = "currentUser">
-                    <a ng-click="selectedTab = 'username'" href="#/profile">Username</a></li>
+                    <a ng-click="selectedTab = 'username'" href="#/profile">{{currentUser.username}}</a></li>
             </ul>
         </div>
     </div>

@@ -13,17 +13,17 @@
 
         users = [
             {"_id":123, "firstName":"Alice","lastName":"Wonderland",
-                "username":"alice",  "password":"alice",   "roles": ["student"], "email": ""},
+                "username":"alice",  "password":"alice",   "roles": ["student"], "email": "alice@neu.edu"},
             {"_id":234, "firstName":"Bob","lastName":"Hope",
-                "username":"bob",    "password":"bob",     "roles": ["admin"], "email": ""},
+                "username":"bob",    "password":"bob",     "roles": ["instructor"], "email": "bob@neu.edu"},
             {"_id":345, "firstName":"Charlie","lastName":"Brown",
-                "username":"charlie","password":"charlie", "roles": ["faculty"], "email": ""},
+                "username":"charlie","password":"charlie", "roles": ["instructor"], "email": "charlie@neu.edu"},
             {"_id":456, "firstName":"Dan","lastName":"Craig",
-                "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"], "email": ""},
+                "username":"dan",    "password":"dan",     "roles": ["instructor"], "email": "dan@neu.edu"},
             {"_id":567, "firstName":"Edward","lastName":"Norton",
-                "username":"ed",     "password":"ed",      "roles": ["student"], "email": ""}
+                "username":"ed",     "password":"ed",      "roles": ["student"], "email": "ed@neu.edu"}
         ];
-/*
+
         var services = {
             findAllUsers : findAllUsers,
             findUserByCredentials: findUserByCredentials,
@@ -49,6 +49,7 @@
                     callback(users[i]);
                 }
             }
+            callback(null);
         }
 
         function findUserById(id, callback)
@@ -99,6 +100,7 @@
                     callback(user);
                 }
             }
+            callback(null);
         }
 
         function findUserByUsername(username, callback)
@@ -110,6 +112,7 @@
                     callback(users[i]);
                 }
             }
+            callback(null);
         }
 
         function setCurrentUser(user, callback)
@@ -123,7 +126,7 @@
         function getCurrentUser (callback) {
             callback($rootScope.currentUser);
         }
-        */
+
     }
 
 })();

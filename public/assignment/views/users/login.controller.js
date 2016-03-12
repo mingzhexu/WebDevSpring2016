@@ -18,6 +18,7 @@
                     $location.url("/profile");
                     $rootScope.currentUser = user;
                 }else{
+                    console.log("can't find user");
                     $scope.message = "Can't find user or wrong password";
                     return;
                 }

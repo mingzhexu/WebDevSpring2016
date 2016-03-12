@@ -6,7 +6,7 @@
         .module("LearningMgmtApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, $location) {
+    function RegisterController($scope, $location, UserServices, $rootScope) {
 
         $scope.register = register;
 
@@ -40,7 +40,7 @@
             }
 
             var new_user;
-            /*
+
             var findUser = function(response){
                 new_user = response;
             }
@@ -54,8 +54,8 @@
             var newUser = function(response) {
                 $rootScope.currentUser = response;
             }
-            //UserServices.createUser(user, newUser);
-            //UserServices.setCurrentUser(user,newUser);*/
+            UserServices.createUser(user, newUser);
+            UserServices.setCurrentUser(user,newUser);
             $location.url("/profile");
         }
 

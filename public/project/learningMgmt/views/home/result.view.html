@@ -1,17 +1,11 @@
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Search Result</title>
 </head>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Red Apple <small> - Best Courses, Best Q&A Platform</small></h1>
-            <div class="well well-lg">
-                <div class="row" class="bg-success">
-                    <div class="col-md-8"><input type="text" class="form-control" ng-model="keyword" placeholder="What would you like to learn about?..."></div>
-                    <div class="col-md-4"><button class="btn btn-danger" ng-click="search(keyword)" type="button"><span class="glyphicon glyphicon glyphicon-search"></span></button></div>
-                </div>
-            </div>
+            <h1 class="page-header">Search Result <small> - choose your favorite</small></h1>
             <strong>{{courses[0].title}}</strong>
             <ul ng-repeat="course in courses" class="list-group">
                 <li class="list-group-item">

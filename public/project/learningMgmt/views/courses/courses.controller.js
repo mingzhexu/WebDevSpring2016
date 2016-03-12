@@ -9,12 +9,16 @@
     function CourseController($scope, $location, CourseServices, $rootScope) {
         console.log("into controller");
         $scope.$location = $location;
-
-        var callback = function(response){
-            console.log(response);
-            $scope.courses = response;
+        console.log($scope.courses);
+        /*
+        if(!$scope.courses){
+            var callback = function(response){
+                console.log("enter service null");
+                $scope.courses = response;
+            }
+            CourseServices.findAllCourses(callback);
         }
-        CourseServices.findAllCourses(callback);
+*/
 
     }
 })();

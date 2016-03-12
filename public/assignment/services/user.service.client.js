@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .factory("UserServices", userService);
 
-    function userService($rootScope)
+    function userService()
     {
         var users;
 

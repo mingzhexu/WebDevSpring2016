@@ -33,6 +33,10 @@
                 .when("/about", {
                     templateUrl: "/project/learningMgmt/views/home/about.view.html"
                 })
+                .when("/result", {
+                    templateUrl: "/project/learningMgmt/views/home/result.view.html",
+                    controller: "ResultController"
+                })
                 .otherwise({
                     redirectTo: "/"
                 });

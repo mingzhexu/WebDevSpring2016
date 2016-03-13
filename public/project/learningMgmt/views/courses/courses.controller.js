@@ -6,19 +6,28 @@
         .module("LearningMgmtApp")
         .controller("CourseController", CourseController);
 
-    function CourseController($scope, $location, CourseServices, $rootScope) {
-        console.log("into controller");
+    function CourseController($scope, $location, CourseServices, UserServices, $rootScope) {
         $scope.$location = $location;
-        console.log($scope.courses);
-        /*
-        if(!$scope.courses){
+
+        if(!$rootScope.currentUser){
             var callback = function(response){
-                console.log("enter service null");
                 $scope.courses = response;
             }
             CourseServices.findAllCourses(callback);
+        }else{
+            var callback = function(response){
+                if(!$scope.coursesId){
+                    $scope.coursesId = response;
+                }
+            }
+
+            var curCourses = function(response){
+                $scope.courses = response;
+            }
+            UserServices.getCoursesByUser($rootScope.currentUser, callback);
+            CourseServices.findCoursesById($scope.coursesId, curCourses);
         }
-*/
+
 
     }
 })();

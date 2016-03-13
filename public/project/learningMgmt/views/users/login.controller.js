@@ -27,7 +27,6 @@
             }
             UserServices.findUserByCredentials(user.username, user.password, callback);
         }
-        console.log("this is login controller");
     }
 
 })();

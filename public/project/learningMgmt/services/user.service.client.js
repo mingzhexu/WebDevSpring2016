@@ -13,15 +13,15 @@
 
         users = [
             {"_id":123, "firstName":"Alice","lastName":"Wonderland",
-                "username":"alice",  "password":"alice",   "roles": ["student"], "email": "alice@neu.edu"},
+                "username":"alice",  "password":"alice",   "roles": ["student"], "email": "alice@neu.edu", "courses":[123]},
             {"_id":234, "firstName":"Bob","lastName":"Hope",
-                "username":"bob",    "password":"bob",     "roles": ["instructor"], "email": "bob@neu.edu"},
+                "username":"bob",    "password":"bob",     "roles": ["instructor"], "email": "bob@neu.edu", "courses":[223,323]},
             {"_id":345, "firstName":"Charlie","lastName":"Brown",
-                "username":"charlie","password":"charlie", "roles": ["instructor"], "email": "charlie@neu.edu"},
+                "username":"charlie","password":"charlie", "roles": ["instructor"], "email": "charlie@neu.edu","courses":[423,323]},
             {"_id":456, "firstName":"Dan","lastName":"Craig",
-                "username":"dan",    "password":"dan",     "roles": ["instructor"], "email": "dan@neu.edu"},
+                "username":"dan",    "password":"dan",     "roles": ["instructor"], "email": "dan@neu.edu","courses":[123,223]},
             {"_id":567, "firstName":"Edward","lastName":"Norton",
-                "username":"ed",     "password":"ed",      "roles": ["student"], "email": "ed@neu.edu"}
+                "username":"ed",     "password":"ed",      "roles": ["student"], "email": "ed@neu.edu", "courses":[]}
         ];
 
         var services = {
@@ -33,7 +33,8 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             setCurrentUser: setCurrentUser,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            getCoursesByUser:getCoursesByUser
         };
 
 
@@ -127,6 +128,14 @@
             callback($rootScope.currentUser);
         }
 
+        function getCoursesByUser(user, callback){
+            for (var i = 0; i < users.length; i++){
+                if(users[i]._id == user._id){
+                    callback(users[i].courses);
+                }
+            }
+            callback(null);
+        }
     }
 
 })();

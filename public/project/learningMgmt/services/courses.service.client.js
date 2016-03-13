@@ -24,7 +24,7 @@
             createCourse: createCourse,
             updateCourse: updateCourse,
             deleteCourseById : deleteCourseById,
-            findCourseById: findCourseById,
+            findCoursesById: findCoursesById,
             searchCoursesByKeyword: searchCoursesByKeyword,
             setResult: setResult,
             getResult: getResult
@@ -62,16 +62,20 @@
             callback(result);
         }
 
-        function findCourseById(id, callback)
+        function findCoursesById(ids, callback)
         {
-            callback(courses[id]);
-            callback(null);
+            var result = [];
+            for(var i = 0; i < courses.length; i++){
+                var find = ids.indexOf(courses[i].id);
+                if(find > -1){
+                    result.push(courses[i]);
+                }
+            }
+            callback(result);
         }
 
         function findAllCourses(callback)
         {
-            console.log("return all courses!");
-            console.log(courses);
             callback(courses);
         }
 

@@ -30,6 +30,14 @@
         }
         CourseServices.findAllCourses(callback);
 
+        $scope.select = function(course){
+            var callback = function(response){
+
+            }
+            CourseServices.setCurrentCourse(course, callback);
+        }
+
+
 
     }
 })();

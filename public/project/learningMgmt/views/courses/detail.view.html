@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{course.title}} | Red Apple</title>
 </head>
 <body>
-
+<div class="container-fluid">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">{{course.title}}<div><small>{{course.school}}</small></div></h1>
+        <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+        <h4>About This Course: </h4>
+        <div class="text-success">Professor: {{course.instructor}}</div>
+        <p>{{course.info}}</p>
+        <button type="button" class="btn btn-default"><a  ng-click="register(course)">Register</a></button>
+    </div>
+</div>
 </body>
 </html>

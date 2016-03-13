@@ -34,6 +34,10 @@
                     templateUrl: "/project/learningMgmt/views/courses/courses.view.html",
                     controller: "CourseController"
                 })
+                .when("/detail", {
+                    templateUrl: "/project/learningMgmt/views/courses/detail.view.html",
+                    controller: "DetailController"
+                })
                 .when("/about", {
                     templateUrl: "/project/learningMgmt/views/home/about.view.html"
                 })

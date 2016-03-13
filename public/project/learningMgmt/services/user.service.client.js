@@ -34,7 +34,9 @@
             findUserByUsername: findUserByUsername,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
-            getCoursesByUser:getCoursesByUser
+            getCoursesByUser:getCoursesByUser,
+            addCourse: addCourse,
+            deleteCourse:deleteCourse
         };
 
 
@@ -132,6 +134,35 @@
             for (var i = 0; i < users.length; i++){
                 if(users[i]._id == user._id){
                     callback(users[i].courses);
+                }
+            }
+            callback(null);
+        }
+
+        function addCourse(user, course, callback){
+            for(var i = 0; i < users.length; i++) {
+                if (users[i]._id == user._id) {
+                    if(users[i].courses.indexOf(course.id) < 0){
+                        users[i].courses.push(course.id);
+                        callback(course);
+                    }else{
+                        callback(null);
+                    }
+                }
+            }
+            callback(null);
+        }
+
+        function deleteCourse(user, course, callback){
+            for(var i = 0; i < users.length; i++) {
+                if (users[i]._id == user._id) {
+                    var index = users[i].courses.indexOf(course.id);
+                    if(index > -1){
+                        users[i].courses.splice(index,1);
+                        callback(course);
+                    }else{
+                        callback(null);
+                    }
                 }
             }
             callback(null);

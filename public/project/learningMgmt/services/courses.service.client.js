@@ -27,7 +27,9 @@
             findCoursesById: findCoursesById,
             searchCoursesByKeyword: searchCoursesByKeyword,
             setResult: setResult,
-            getResult: getResult
+            getResult: getResult,
+            setCurrentCourse: setCurrentCourse,
+            getCurrentCourse: getCurrentCourse
         };
 
         return services;
@@ -125,6 +127,15 @@
 
         function getResult (callback) {
             callback($rootScope.result);
+        }
+
+        function setCurrentCourse(course, callback){
+            $rootScope.currentCourse = course;
+            callback(course);
+
+        }
+        function getCurrentCourse(callback){
+            callback($rootScope.currentCourse);
         }
     }
 

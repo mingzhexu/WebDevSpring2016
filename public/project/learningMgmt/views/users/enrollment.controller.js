@@ -25,6 +25,20 @@
             CourseServices.findCoursesById($scope.coursesId, curCourses);
 
         }
+
+        $scope.withdrew = function(course){
+
+            var callback = function(response){
+                if(response){
+                    console.log("successfully delete");
+                    $location.url("/enrollments");
+                    var index = $scope.mycourses.indexOf(course);
+                    $scope.mycourses.splice(index, 1);
+                }
+            }
+            UserServices.deleteCourse($rootScope.currentUser, course, callback);
+        }
+
     }
 
 })();

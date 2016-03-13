@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Courses</title>
+    <title>Enrollment</title>
 </head>
 <body>
-    <div class="container-fluid">
+<div class="container-fluid">
+    <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Courses</h1>
-            <ul ng-repeat="course in courses" class="list-group">
-                <li class="list-group-item">
-                    <strong>{{course.title}}</strong>
-                    <div>{{course.instructor}} | {{course.school}}</div>
-                    <div class="text-muted"><small>{{course.info}}</small></div>
-                </li>
+            <h1 class="page-header">Profile</h1>
+            <ul class="nav nav-tabs">
+                <li role="presentation"><a href="#/profile">Profile</a></li>
+                <li role="presentation" class="active"><a href="#/enrollments">Enrollments</a></li>
+                <li role="presentation"><a href="#/courses">Accomplishments</a></li>
             </ul>
-            <div ng-show="currentUser"><strong>My Courses:</strong></div>
+
             <ul ng-repeat="course in mycourses" class="list-group">
                 <li class="list-group-item">
                     <strong>{{course.title}}</strong>
@@ -24,8 +23,8 @@
                 </li>
             </ul>
 
-
         </div>
     </div>
+</div>
 </body>
 </html>

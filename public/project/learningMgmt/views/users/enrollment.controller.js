@@ -1,12 +1,14 @@
 /**
- * Created by mingzhexu on 3/4/16.
+ * Created by mingzhexu on 3/13/16.
  */
-(function(){
+(function() {
     angular
         .module("LearningMgmtApp")
-        .controller("CourseController", CourseController);
+        .controller("EnrollController", EnrollController);
 
-    function CourseController($scope, $location, CourseServices, UserServices, $rootScope) {
+
+    function EnrollController($scope, $rootScope, UserServices, CourseServices, $location) {
+
         $scope.$location = $location;
 
         if($rootScope.currentUser){
@@ -22,14 +24,7 @@
             UserServices.getCoursesByUser($rootScope.currentUser, callback);
             CourseServices.findCoursesById($scope.coursesId, curCourses);
 
-
-
         }
-        var callback = function(response){
-            $scope.courses = response;
-        }
-        CourseServices.findAllCourses(callback);
-
-
     }
+
 })();

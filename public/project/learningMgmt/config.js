@@ -22,6 +22,10 @@
                     templateUrl: "/project/learningMgmt/views/users/profile.view.html",
                     controller: "ProfileController"
                 })
+                .when("/enrollments", {
+                    templateUrl: "/project/learningMgmt/views/users/enrollment.view.html",
+                    controller: "EnrollController"
+                })
                 .when("/", {
                     templateUrl: "/project/learningMgmt/views/home/home.view.html",
                     controller: "HomeController"

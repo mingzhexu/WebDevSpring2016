@@ -12,7 +12,7 @@
         <h4>About This Course: </h4>
         <div class="text-success">Professor: {{course.instructor}}</div>
         <p>{{course.info}}</p>
-        <button type="button" class="btn btn-default"><a  ng-click="register(course)">Register</a></button>
+        <button type="button" class="btn btn-default" ng-hide="currentUser.roles.indexOf('instructor') >= 0"><a  ng-click="register(course)">Register</a></button>
     </div>
 </div>
 </body>

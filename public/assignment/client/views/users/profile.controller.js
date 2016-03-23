@@ -30,13 +30,17 @@
             $scope.error = null;
             $scope.message = null;
 
-            var callback = function(target){
-                $rootScope.currentUser = target;
-            }
-            UserServices.updateUser($rootScope.currentUser._id, user, callback);
-            UserServices.setCurrentUser(user,callback);
-            console.log("the update user");
-            console.log(user);
+            UserServices
+                .updateUser($rootScope.currentUser._id, user)
+                .then(function(response){
+                    if(response.data) {
+                        UserServices.setCurrentUser(response.data);
+                        console.log("response:", response.data);
+                        $location.url("/profile");
+                    }else{
+                        console.log("error");
+                    }
+                });
 
             if (user) {
                 $scope.message = "User updated successfully";
@@ -44,6 +48,5 @@
                 $scope.message = "Unable to update the user";
             }
         }
-        console.log("profile controller: " + $location.url());
     }
 })();

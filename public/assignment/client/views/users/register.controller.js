@@ -31,22 +31,23 @@
                 return;
             }
             var new_user;
-            var findUser = function(response){
-                new_user = response;
-            }
-            UserServices.findUserByUsername(user.username, findUser);
 
-            if (new_user != null) {
-                $scope.message = "User already exists";
-                return;
-            }
-
-            var newUser = function(response) {
-                $rootScope.currentUser = response;
-            }
-            UserServices.createUser(user, newUser);
-            UserServices.setCurrentUser(user,newUser);
-            $location.url("/profile");
+            UserServices
+                .findUserByUsername(user.username)
+                .then(function(response){
+                    if(response.data) {
+                        $scope.message = "User already exists";
+                        return;
+                    }else{
+                        UserServices
+                            .createUser(user)
+                            .then(function(response){
+                                UserServices.setCurrentUser(user);
+                                $location.url("/profile");
+                                console.log("create new user");
+                            });
+                    }
+                });
         }
     }
 })();

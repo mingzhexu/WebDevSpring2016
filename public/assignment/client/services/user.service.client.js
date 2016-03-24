@@ -17,7 +17,7 @@
             updateUser: updateUser,
             deleteUserById : deleteUserById,
             findUserById: findUserById,
-            findUserByUsername: findUserByUsername,
+            findUserByUserName: findUserByUserName,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
             logout : logout
@@ -34,7 +34,7 @@
 
         function findUserByCredentials(credentials)
         {
-            console.log("user service client", credentials);
+            //console.log("user service client", credentials);
             return $http
                 .post("/api/assignment/login", credentials);
         }
@@ -65,15 +65,17 @@
 
         function updateUser(userId, user)
         {
+            console.log("update user in client service:", userId, user);
             return $http
                 .put("/api/assignment/user/" + userId, user);
         }
 
-        function findUserByUsername(username)
+        function findUserByUserName(user)
         {
-            console.log("username:", username);
+            var username = user.username;
+            console.log("username:", user.username);
             return $http
-                .get("/api/assignment/search", username);
+                .get("/api/assignment/user/" + username);
         }
 
         function setCurrentUser(user)

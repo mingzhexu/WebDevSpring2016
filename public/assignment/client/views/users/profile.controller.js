@@ -13,10 +13,12 @@
 
         var curUser = function(cur)
         {
-            $rootScope.currentUser = cur;
-            console.log($rootScope.currentUser);
-        }
-        UserServices.getCurrentUser(curUser);
+            $rootScope.currentUser = cur.data;
+            console.log("getCurUser:", $rootScope.currentUser);
+        };
+        UserServices
+            .getCurrentUser()
+            .then(curUser);
 
         if (!$scope.currentUser) {
             console.log($scope.currentUser);
@@ -30,23 +32,19 @@
             $scope.error = null;
             $scope.message = null;
 
+            console.log("update",$rootScope.currentUser, user);
             UserServices
-                .updateUser($rootScope.currentUser._id, user)
+                .updateUser(user._id, user)
                 .then(function(response){
                     if(response.data) {
                         UserServices.setCurrentUser(response.data);
-                        console.log("response:", response.data);
                         $location.url("/profile");
+                        $scope.message = "User updated successfully";
                     }else{
                         console.log("error");
+                        $scope.message = "Unable to update the user";
                     }
                 });
-
-            if (user) {
-                $scope.message = "User updated successfully";
-            } else {
-                $scope.message = "Unable to update the user";
-            }
         }
     }
 })();

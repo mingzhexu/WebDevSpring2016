@@ -22,11 +22,13 @@ module.exports = function() {
     function updateUser(userId, user){
         for(var u in mock) {
             if( mock[u]._id == userId ) {
+                console.log("userId updated:", userId);
                 mock[u].firstName = user.firstName;
                 mock[u].lastName = user.lastName;
                 mock[u].username = user.username;
                 mock[u].password = user.password;
                 mock[u].email = user.email;
+                console.log("after update, the user is:", mock[u]);
                 return mock[u];
             }
         }
@@ -62,6 +64,7 @@ module.exports = function() {
 
     function createUser(user) {
         user._id = "ID_" + (new Date()).getTime();
+        console.log("newly created user with id:", user._id);
         mock.push(user);
         return user;
     }

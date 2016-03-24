@@ -33,7 +33,7 @@
             var new_user;
 
             UserServices
-                .findUserByUsername(user.username)
+                .findUserByUserName(user)
                 .then(function(response){
                     if(response.data) {
                         $scope.message = "User already exists";
@@ -44,7 +44,7 @@
                             .then(function(response){
                                 UserServices.setCurrentUser(user);
                                 $location.url("/profile");
-                                console.log("create new user");
+                                console.log("create new user:", $rootScope.currentUser._id);
                             });
                     }
                 });

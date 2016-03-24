@@ -8,7 +8,7 @@ module.exports = function(app, userModel) {
     app.get("/api/assignment/user", getAllUser);
     app.get("/api/assignment/loggedin", getCurrentUser);
 
-    app.get("/api/assignment/search", findUserByUsername);
+    app.get("/api/assignment/user/:name", searchUsername);
     app.post("/api/assignment/login", findUserByCredentials);
     app.put("/api/assignment/user/:id", update);
     app.post("/api/assignment/logout", logout);
@@ -17,6 +17,7 @@ module.exports = function(app, userModel) {
 
     function getCurrentUser(req, res)
     {
+        console.log("get current user:", req.session.currentUser);
         res.json(req.session.currentUser);
     }
 
@@ -32,6 +33,7 @@ module.exports = function(app, userModel) {
         var user = req.body;
         console.log("req body:", req.body);
         console.log("req id:", req.params["id"]);
+        req.session.currentUser = user;
         res.json(userModel.updateUser(index, user));
     }
 
@@ -45,6 +47,7 @@ module.exports = function(app, userModel) {
         var user = req.body;
         user = userModel.createUser(user);
         req.session.currentUser = user;
+        console.log("register:", req.session.currentUser);
         res.json(user);
     }
 
@@ -55,11 +58,11 @@ module.exports = function(app, userModel) {
         res.json(user);
     }
 
-    function findUserByUsername(req, res)
+    function searchUsername(req, res)
     {
-        var username = req.body;
-        console.log(username);
-        res.json(userModel.findUserByUsername(username));
+        var name = req.params["name"];
+        console.log(name);
+        res.json(userModel.findUserByUsername(name));
     }
 
     function logout(req, res)

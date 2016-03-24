@@ -9,6 +9,7 @@
 
     function formService($rootScope, $http) {
         var forms;
+
         forms = [
             {"_id": "000", "title": "Contacts", "userId": 123},
             {"_id": "010", "title": "ToDo",     "userId": 123},
@@ -20,13 +21,26 @@
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
             updateFormById: updateFormById,
-            setCurrentForm: setCurrentForm
+            setCurrentForm: setCurrentForm,
+            getCurrentForm: getCurrentForm,
+            findFormByName: findFormByName
         };
 
         return services;
 
+        function findFormByName(userId, title){
+            return $http
+                .get("/api/assignment/user/"+userId+"/form/title/"+title);
+        }
+
+        function getCurrentForm(){
+            return $http
+                .get("/api/assignment/form/select");
+        }
+
         function setCurrentForm(form){
-            $rootScope.form = form;
+            return $http
+                .post("/api/assignment/form/select", form);
         }
 
         function createFormForUser(userId, form){
@@ -45,7 +59,7 @@
         }
 
         function updateFormById(formId, newForm){
-            $http
+            return $http
                 .put("/api/assignment/form/"+formId, newForm);
         }
     }

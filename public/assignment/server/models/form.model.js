@@ -5,14 +5,29 @@ var mock = require("./form.mock.json");
 module.exports = function() {
 
     var api = {
-        findAllForms : findAllForms,
+        findAllFormsForUser : findAllFormsForUser,
         updateFormById: updateFormById,
         removeFormById : removeFormById,
         createForm: createForm,
-        findFormById: findFormById
+        findFormById: findFormById,
+        setSelectedForm: setSelectedForm,
+        findFormByTitle: findFormByTitle
     };
 
     return api;
+
+    function findFormByTitle(userId, title){
+        for(var u in mock) {
+            if( mock[u].title == title && mock[u].userId == userId) {
+                return mock[u];
+            }
+        }
+        return null;
+    }
+
+    function setSelectedForm(form){
+
+    }
 
     // return the whole list of forms for the user
     function updateFormById(formId, form){
@@ -47,8 +62,15 @@ module.exports = function() {
         return null;
     }
 
-    function findAllForms(){
-        return mock;
+    function findAllFormsForUser(userId){
+        var userForms = [];
+        for(var u in mock)
+        {
+            if(mock[u].userId == userId){
+                userForms.push(mock[u]);
+            }
+        }
+        return userForms;
     }
 
     function findFormById(formId) {
@@ -60,8 +82,9 @@ module.exports = function() {
         return null;
     }
 
-    function createForm(form) {
+    function createForm(userId, form) {
         form._id = "ID_" + (new Date()).getTime();
+        form.userId = userId;
         console.log("newly created form with id:", form._id);
         mock.push(form);
         return form;

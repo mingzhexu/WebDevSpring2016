@@ -7,14 +7,21 @@ module.exports = function(app, userModel) {
     app.post("/api/assignment/register", register);
     app.get("/api/assignment/user", getAllUser);
     app.get("/api/assignment/loggedin", getCurrentUser);
+    app.get("/api/assignment/user/:id", getUserById);
 
-    app.get("/api/assignment/user/:name", searchUsername);
+    app.get("/api/assignment/user/:username", searchUsername);
     app.post("/api/assignment/login", findUserByCredentials);
     app.put("/api/assignment/user/:id", update);
     app.post("/api/assignment/logout", logout);
     app.delete("/api/assignment/user/:id", deleteUser);
 
 
+    function getUserById(req, res)
+    {
+        var id = req.params["id"];
+        var user = userModel.findUserById(id);
+        res.json(user);
+    }
     function getCurrentUser(req, res)
     {
         console.log("get current user:", req.session.currentUser);
@@ -60,7 +67,7 @@ module.exports = function(app, userModel) {
 
     function searchUsername(req, res)
     {
-        var name = req.params["name"];
+        var name = req.params["username"];
         console.log(name);
         res.json(userModel.findUserByUsername(name));
     }

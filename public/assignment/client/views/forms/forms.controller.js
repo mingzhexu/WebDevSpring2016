@@ -6,8 +6,15 @@
         .module("FormBuilderApp")
         .controller("FormsController", FormsController);
 
-    function FormsController($scope, $rootScope, FormService) {
+    function FormsController($scope, $rootScope, FormService, UserServices) {
 
+        UserServices
+            .getCurrentUser()
+            .then(function(response){
+                $rootScope.currentUser = response.data;
+
+            });
+        console.log("current user:", $rootScope.currentUser);
         FormService
             .findAllFormsForUser($rootScope.currentUser._id)
             .then(function(response){
@@ -19,19 +26,37 @@
             });
 
         $scope.addForm = function(form){
+            $scope.message = null;
             FormService
-                .createFormForUser($rootScope.currentUser._id, form)
+                .findFormByName($rootScope.currentUser._id, form.title)
                 .then(function(response){
-                    if(response.data){
-                        $scope.forms.push(response.data);
+                    if(response.data) {
+                        console.log("already there, dup");
+                        $scope.message = "You have that form";
+                    }else{
+                        FormService
+                            .createFormForUser($rootScope.currentUser._id, form)
+                            .then(function(response){
+                                if(response.data){
+                                    $scope.forms.push(response.data);
+                                }
+                            });
+                        $scope.form = "";
                     }
                 });
-            $scope.form = "";
+
+
         };
 
         $scope.selectForm = function(form){
+
             $scope.selectedFormIndex = $scope.forms.indexOf(form);
-            FormService.setCurrentForm(form);
+            FormService
+                .setCurrentForm(form)
+                .then(function(response){
+                    $scope.form = response.data;
+                    console.log("select form", $scope.form);
+                });
         };
 
         $scope.updateForm = function(form){
@@ -47,8 +72,7 @@
                         $scope.forms[$scope.selectedFormIndex].title = $scope.form.title;
                     }
                 });
-            $scope.form = {};
-            console.log($scope.forms);
+            $scope.form = "";
         };
 
         $scope.deleteForm = function(form){

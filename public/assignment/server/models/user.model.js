@@ -69,10 +69,10 @@ module.exports = function() {
         return user;
     }
 
-    function findUserByCredentials(credentials) {
+    function findUserByCredentials(username, password) {
         for(var u in mock) {
-            if( mock[u].username === credentials.username &&
-                mock[u].password === credentials.password) {
+            if( mock[u].username == username &&
+                mock[u].password == password) {
                 return mock[u];
             }
         }

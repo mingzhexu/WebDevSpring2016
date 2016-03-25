@@ -35,8 +35,10 @@
         function findUserByCredentials(credentials)
         {
             //console.log("user service client", credentials);
+            var username = credentials.username;
+            var password = credentials.password;
             return $http
-                .post("/api/assignment/login", credentials);
+                .post("/api/assignment/user/"+username+"/password/"+password);
         }
 
         function findUserById(id)

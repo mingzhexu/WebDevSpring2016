@@ -27,6 +27,11 @@
 
         $scope.addForm = function(form){
             $scope.message = null;
+            if (form == null)
+            {
+                $scope.message = "You need to name the form";
+                return;
+            }
             FormService
                 .findFormByName($rootScope.currentUser._id, form.title)
                 .then(function(response){

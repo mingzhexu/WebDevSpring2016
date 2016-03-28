@@ -25,7 +25,6 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "~3.4.4",
-    "express-session": "file:node_modules/express-session",
     "multer": "^1.1.0",
     "node-uuid": "^1.4.7",
     "q": "^1.4.1"

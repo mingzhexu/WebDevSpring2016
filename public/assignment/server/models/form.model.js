@@ -51,8 +51,11 @@ module.exports = function() {
         {
             if(mock[u]._id == formId)
             {
+                var id = "ID_" + (new Date()).getTime();
+                console.log("id",id);
+                field._id = 12;
                 mock[u].fields.push(field);
-                return muck[u].fields;
+                return mock[u].fields;
             }
         }
         return null;

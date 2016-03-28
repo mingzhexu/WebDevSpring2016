@@ -16,124 +16,50 @@
             <form role="form">
                 <div class="form-group">
                     <div ng-repeat="field in fields">
-                        <label class="control-label col-md-10">{{field.label}}</label>
+                        <label class="control-label col-md-10">{{field.label}}:</label>
                         <div class="col-md-9">
                             <div class="animate-switch-container" ng-switch on="field.type">
-                            <div class="animate-switch" ng-switch-when="TEXT">
-                                <input type="text" class="form-control" placeholder="{{field.label}}">
-                            </div>
-
-                            <div class="animate-switch" ng-switch-when="TEXTAREA">
-                                <input type="text" class="form-control" placeholder={{field.label}}>
-                            </div>
-
-                            <div class="animate-switch" ng-switch-when="EMAIL">
-                                <input type="email" class="form-control" placeholder={{field.label}}>
-                            </div>
-
-                            <div class="animate-switch" ng-switch-when="DATE">
-                                <input type="date" class="form-control" placeholder="Select Date">
-                            </div>
-
-                            <div class="animate-switch" ng-switch-when="OPTIONS">
-                                <div class="checkbox" ng-repeat="option in {{field.options}}">
-                                    <label><input type="checkbox" ng-model="option">option</label>
+                                <div class="animate-switch" ng-switch-when="TEXT">
+                                    <input type="text" class="form-control" placeholder="{{field.label}}">
                                 </div>
-                            </div>
+                                <div class="animate-switch" ng-switch-when="TEXTAREA">
+                                    <input type="text" class="form-control" placeholder={{field.label}}>
+                                </div>
+
+                                <div class="animate-switch" ng-switch-when="EMAIL">
+                                    <input type="email" class="form-control" placeholder={{field.label}}>
+                                </div>
+
+                                <div class="animate-switch" ng-switch-when="DATE">
+                                    <input type="date" ng-model="field.date" class="form-control" placeholder="Select Date">
+                                </div>
+
+                                <div class="animate-switch" ng-switch-when="CHECKBOXES">
+                                    <div class="checkbox" ng-repeat="option in field.options">
+                                        <label><input type="checkbox" ng-model="option">{{option.label}}</label>
+                                    </div>
+                                </div>
+                                <div class="animate-switch" ng-switch-when="OPTIONS">
+                                    <select class="form-control">
+                                        <option ng-repeat="option in field.options">{{option.label}}</option>
+                                    </select>
+                                </div>
+                                <div class="animate-switch" ng-switch-when="RADIOS">
+                                    <div class="radio" ng-repeat="option in field.options">
+                                        <label ><input type="radio">{{option.label}}</label>
+                                        <br>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <ul class="col-md-3">
-                            <button type="button" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
-                            <button type="button" class="btn btn-primary"><li class="glyphicon glyphicon-plus pull-right"></li></button>
-                            <button type="button" class="btn btn-danger"><li class="glyphicon glyphicon-remove pull-right"></li></button>
-                            <button type="button" class="btn btn-success"><li class="glyphicon glyphicon-align-justify pull-right"></li></button>
+                            <button type="button" ng-click="updateField(field)" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
+                            <button type="button" ng-click="addFieldInfo(field)" class="btn btn-primary"><li class="glyphicon glyphicon-plus pull-right"></li></button>
+                            <button type="button" ng-click="deleteField(field)" class="btn btn-danger"><li class="glyphicon glyphicon-remove pull-right"></li></button>
+                            <button type="button" ng-click="" class="btn btn-success"><li class="glyphicon glyphicon-align-justify pull-right"></li></button>
                         </ul>
                     </div>
-<!--
-                    <label class="control-label col-md-10" for="FirstName">First Name:</label>
-                    <div class="col-md-9">
-                    <input type="text" class="form-control" id="FirstName" placeholder="First Name">
-                    </div>
-                    <ul class="col-md-3">
-                        <button type="button" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
-                        <button type="button" class="btn btn-primary"><li class="glyphicon glyphicon-plus pull-right"></li></button>
-                        <button type="button" class="btn btn-danger"><li class="glyphicon glyphicon-remove pull-right"></li></button>
-                        <button type="button" class="btn btn-success"><li class="glyphicon glyphicon-align-justify pull-right"></li></button>
-                    </ul>
-                    <label class="control-label col-md-10" for="LastName">Last Name:</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" id="LastName" placeholder="Last Name">
-                    </div>
-                    <ul class="col-md-3">
-                        <button type="button" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
-                        <button type="button" class="btn btn-primary"><li class="glyphicon glyphicon-plus pull-right"></li></button>
-                        <button type="button" class="btn btn-danger"><li class="glyphicon glyphicon-remove pull-right"></li></button>
-                        <button type="button" class="btn btn-success"><li class="glyphicon glyphicon-align-justify pull-right"></li></button>
-                    </ul>
-                    <label class="control-label col-md-10" for="DateOfBirth">Date of Birth:</label>
-                    <div class="col-md-9">
-                        <input type="date" class="form-control" id="DateOfBirth" placeholder="Select Date">
-                    </div>
-                    <ul class="col-md-3">
-                        <button type="button" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
-                        <button type="button" class="btn btn-primary"><li class="glyphicon glyphicon-plus pull-right"></li></button>
-                        <button type="button" class="btn btn-danger"><li class="glyphicon glyphicon-remove pull-right"></li></button>
-                        <button type="button" class="btn btn-success"><li class="glyphicon glyphicon-align-justify pull-right"></li></button>
-                    </ul>
-                    <label class="control-label col-md-12" for="Gender">Gender:</label>
-                    <div class="col-md-9">
-                    <select class="form-control" id="Gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                    </div>
-                    <ul class="col-md-3">
-                        <button type="button" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
-                        <button type="button" class="btn btn-primary"><li class="glyphicon glyphicon-plus pull-right"></li></button>
-                        <button type="button" class="btn btn-danger"><li class="glyphicon glyphicon-remove pull-right"></li></button>
-                        <button type="button" class="btn btn-success"><li class="glyphicon glyphicon-align-justify pull-right"></li></button>
-                    </ul>
-                    <label class="control-label col-md-12" for="roles">Roles:</label>
-                    <div class="col-md-9">
-                        <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="admin" value="admin" checked> Admin
-                        </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                            <input type="checkbox" name="student" value="student"> Student
-                        </label>
-                        </div>
-                        <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="user" id="roles2" value="user" checked> User
-                        </label>
-                        </div>
-                    </div>
-                    <ul class="col-md-3">
-                        <button type="button" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
-                        <button type="button" class="btn btn-primary"><li class="glyphicon glyphicon-plus pull-right"></li></button>
-                        <button type="button" class="btn btn-danger"><li class="glyphicon glyphicon-remove pull-right"></li></button>
-                        <button type="button" class="btn btn-success"><li class="glyphicon glyphicon-align-justify pull-right"></li></button>
-                    </ul>
-                    <label class="control-label col-md-12">License Agreement: </label>
-                    <div class = "col-md-9">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>YES
-                            </label><br>
-                            <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">NO
-                            </label>
-                        </div>
-                    </div>
-                    <ul class="col-md-3">
-                        <button type="button" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
-                        <button type="button" class="btn btn-primary"><li class="glyphicon glyphicon-plus pull-right"></li></button>
-                        <button type="button" class="btn btn-danger"><li class="glyphicon glyphicon-remove pull-right"></li></button>
-                        <button type="button" class="btn btn-success"><li class="glyphicon glyphicon-align-justify pull-right"></li></button>
-                    </ul>-->
                 </div>
             </form>
             <hr style="width: 100%; color: black; height: 1px; background-color:black;" />

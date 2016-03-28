@@ -19,20 +19,23 @@
             });
 
         $scope.addField = function(fieldType){
+            console.log("add field type", fieldType);
             FieldService
-                .addField(fieldType)
+                .createFieldForForm(formId, fieldType)
                 .then(function(response)
                 {
+                    $scope.fields = response.data;
                     console.log("success");
                 });
         };
 
-        $scope.deleteField = function(formId, fieldId)
+        $scope.deleteField = function(field)
         {
             FieldService
-                .deleteFieldFromForm(formId, fieldId)
+                .deleteFieldFromForm(formId, field._id)
                 .then(function(response){
                     $scope.fields = response.data;
+                    console.log("deleted");
                 });
         }
     }

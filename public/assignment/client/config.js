@@ -29,20 +29,20 @@
                 .when("/forms", {
                     templateUrl: "/assignment/client/views/forms/forms.view.html",
                     controller: "FormsController",
-                    controllerAs: "userModel"
+                    controllerAs: "formModel"
                 })
-                .when("/fields", {
+                .when("/form/:formId/fields", {
                     templateUrl: "/assignment/client/views/forms/fields.view.html",
-                    controller: "FieldsController",
-                    controllerAs: "userModel"
+                    controller: "FieldController",
+                    controllerAs: "formModel"
                 })
-                .when("/", {
+                .when("/home", {
                     templateUrl: "/assignment/client/views/home/home.view.html",
                     controller: "HomeController",
                     controllerAs: "userModel"
                 })
                 .otherwise({
-                    redirectTo: "/"
+                    redirectTo: "/home"
                 });
         });
 })();

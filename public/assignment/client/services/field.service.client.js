@@ -17,6 +17,8 @@
             updateField: updateField
         };
 
+        return services;
+
         function createFieldForForm(formId, field)
         {
             return $http.post("/api/assignment/form/"+formId+"/field", field);
@@ -24,7 +26,7 @@
 
         function getFieldsForForm(formId)
         {
-            return $http.get("/api/assignment/form/"+formId+"/field");
+            return $http.get("/api/assignment/form/"+formId+"/fields");
         }
 
         function getFieldForForm(formId, fieldId)

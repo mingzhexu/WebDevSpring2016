@@ -29,6 +29,32 @@
                 });
         };
 
+        $scope.editField=function(field)
+        {
+            $scope.field = field;
+            var fieldType = field.type;
+            if (fieldType == "TEXT" || fieldType == "TEXTAREA") {
+                $("#dialog-1").modal();
+
+            } else if (fieldType == "OPTIONS" || fieldType == "CHECKBOXES" || fieldType == "RADIO") {
+                $("#dialog-3").modal();
+            }else {
+                $("#dialog-2").modal();
+            }
+        }
+
+        $scope.updateField = function(field)
+        {
+            FieldService
+                .updateField(formId, field._id, field)
+                .then(function(response){
+                    if(response.data){
+                        console.log(response.data);
+                        $scope.fields= response.data;
+                    }
+                })
+        };
+
         $scope.deleteField = function(field)
         {
             FieldService

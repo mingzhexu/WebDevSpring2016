@@ -37,7 +37,8 @@ module.exports = function() {
                     if(fields[v]._id == fieldId)
                     {
                         fields[v] = field;
-                        return fields[v];
+                        console.log(fields);
+                        return fields;
                     }
                 }
             }

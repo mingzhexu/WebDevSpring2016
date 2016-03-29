@@ -13,8 +13,9 @@
                 <li role="presentation"><a href="#/forms">Forms</a></li>
                 <li role="presentation" class="active"><a href="#/form/:formId/fields">Fields</a></li>
             </ul>
+            <div class="tab-pane active" id="field">
             <form role="form">
-                <div class="form-group">
+                <div class="form-group" id="tbody-sortable" form-sortable form-axis="y">
                     <div ng-repeat="field in fields">
                         <label class="control-label col-md-10">{{field.label}}:</label>
                         <div class="col-md-9">
@@ -54,7 +55,7 @@
                             </div>
                         </div>
                         <ul class="col-md-3">
-                            <button type="button" ng-click="updateField(field)" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
+                            <button type="button" ng-click="editField(field)" class="btn btn-warning"><li class="glyphicon glyphicon-pencil pull-right"></li></button>
                             <button type="button" ng-click="addFieldInfo(field)" class="btn btn-primary"><li class="glyphicon glyphicon-plus pull-right"></li></button>
                             <button type="button" ng-click="deleteField(field)" class="btn btn-danger"><li class="glyphicon glyphicon-remove pull-right"></li></button>
                             <button type="button" ng-click="" class="btn btn-success"><li class="glyphicon glyphicon-align-justify pull-right"></li></button>
@@ -62,12 +63,101 @@
                     </div>
                 </div>
             </form>
-            <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="dialog-1" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4>{{field.type}}</h4>
+                        </div>
+                        <div class="modal-body" style="padding:40px 50px;">
+                            <div >
+                                <label class="control-label">Label</label>
+                                <input type="text" class="form-control" ng-model="field.label">
+                                <label class="control-label">Placeholder</label>
+                                <input type="text" class="form-control" ng-model="field.placeholder">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="updateField(field)"><span class="glyphicon glyphicon-okay"></span> ok</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="dialog-2" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4>{{field.type}}</h4>
+                        </div>
+                        <div class="modal-body" style="padding:40px 50px;">
+                            <div >
+                                <label class="control-label">Label</label>
+                                <input type="text" class="form-control" ng-model="field.label">
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="updateField(field)"><span class="glyphicon glyphicon-okay"></span> ok</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="dialog-3" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4>{{field.type}}</h4>
+                        </div>
+                        <div class="modal-body" style="padding:40px 50px;">
+                            <div  >
+                                <label class="control-label">Label</label>
+                                <input type="text" class="form-control" ng-model="field.label" >
+                                <label class="control-label">Options</label>
+                                <textarea class="form-control" rows="5" ng-model="field.options">
+                                    1.These can be enter in a textarea,one option per line2.You can use the following format: LABEL:VALUE
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="model.updateField(model.fieldId,model.textarea)"><span class="glyphicon glyphicon-okay"></span> ok</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
 
             <label class="control-label col-md-10">Add New Field:</label>
             <div class="col-md-9">
                 <select class="form-control" ng-model="model.fieldType">
-                    <option>Single Line Text Field</option>
+                    <option selected="selected">Single Line Text Field</option>
                     <option>Multi Line Text Field</option>
                     <option>Date Field</option>
                     <option>Dropdown Field</option>

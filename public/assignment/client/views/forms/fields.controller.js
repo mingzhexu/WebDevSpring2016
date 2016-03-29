@@ -36,20 +36,25 @@
             if (fieldType == "TEXT" || fieldType == "TEXTAREA") {
                 $("#dialog-1").modal();
 
-            } else if (fieldType == "OPTIONS" || fieldType == "CHECKBOXES" || fieldType == "RADIO") {
+            } else if (fieldType == "OPTIONS" || fieldType == "CHECKBOXES" || fieldType == "RADIOS") {
                 $("#dialog-3").modal();
             }else {
                 $("#dialog-2").modal();
             }
         }
 
-        $scope.updateField = function(field)
+        $scope.updateField = function(field, newfield)
         {
+            console.log("in update", field, field._id, formId);
+            console.log("in update", newfield, field._id, formId);
+            field.label = newfield.label;
+            field.placeholder = newfield.placeholder;
+            field.options = newfield.options;
             FieldService
                 .updateField(formId, field._id, field)
                 .then(function(response){
                     if(response.data){
-                        console.log(response.data);
+                        console.log("update field:",response.data);
                         $scope.fields= response.data;
                     }
                 })

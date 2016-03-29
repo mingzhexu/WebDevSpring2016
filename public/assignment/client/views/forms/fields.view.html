@@ -21,14 +21,14 @@
                         <div class="col-md-9">
                             <div class="animate-switch-container" ng-switch on="field.type">
                                 <div class="animate-switch" ng-switch-when="TEXT">
-                                    <input type="text" class="form-control" placeholder="{{field.label}}">
+                                    <input type="text" class="form-control" placeholder="{{field.placeholder}}">
                                 </div>
                                 <div class="animate-switch" ng-switch-when="TEXTAREA">
-                                    <input type="text" class="form-control" placeholder={{field.label}}>
+                                    <input type="text" class="form-control" placeholder={{field.placeholder}}>
                                 </div>
 
                                 <div class="animate-switch" ng-switch-when="EMAIL">
-                                    <input type="email" class="form-control" placeholder={{field.label}}>
+                                    <input type="email" class="form-control" placeholder="Email">
                                 </div>
 
                                 <div class="animate-switch" ng-switch-when="DATE">
@@ -79,14 +79,14 @@
                         <div class="modal-body" style="padding:40px 50px;">
                             <div >
                                 <label class="control-label">Label</label>
-                                <input type="text" class="form-control" ng-model="field.label">
+                                <input type="text" class="form-control" ng-model="newfield.label">
                                 <label class="control-label">Placeholder</label>
-                                <input type="text" class="form-control" ng-model="field.placeholder">
+                                <input type="text" class="form-control" ng-model="newfield.placeholder">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="updateField(field)"><span class="glyphicon glyphicon-okay"></span> ok</button>
+                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="updateField(field, newfield)"><span class="glyphicon glyphicon-okay"></span> ok</button>
                         </div>
                     </div>
 
@@ -107,20 +107,19 @@
                         <div class="modal-body" style="padding:40px 50px;">
                             <div >
                                 <label class="control-label">Label</label>
-                                <input type="text" class="form-control" ng-model="field.label">
+                                <input type="text" class="form-control" ng-model="newField.label">
 
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="updateField(field)"><span class="glyphicon glyphicon-okay"></span> ok</button>
+                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="updateField(field, newField)"><span class="glyphicon glyphicon-okay"></span> ok</button>
 
                         </div>
                     </div>
 
                 </div>
             </div>
-
 
 
             <div class="modal fade" id="dialog-3" role="dialog">
@@ -133,18 +132,18 @@
                             <h4>{{field.type}}</h4>
                         </div>
                         <div class="modal-body" style="padding:40px 50px;">
-                            <div  >
+                            <div>
                                 <label class="control-label">Label</label>
-                                <input type="text" class="form-control" ng-model="field.label" >
+                                <input type="text" class="form-control" ng-model="newField.label" >
                                 <label class="control-label">Options</label>
-                                <textarea class="form-control" rows="5" ng-model="field.options">
+                                <textarea class="form-control" rows="5" ng-model="newField.options">
                                     1.These can be enter in a textarea,one option per line2.You can use the following format: LABEL:VALUE
                                 </textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="model.updateField(model.fieldId,model.textarea)"><span class="glyphicon glyphicon-okay"></span> ok</button>
+                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="updateField(field, newField)"><span class="glyphicon glyphicon-okay"></span> ok</button>
 
                         </div>
                     </div>
@@ -152,12 +151,12 @@
                 </div>
             </div>
 
-
+            <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
 
             <label class="control-label col-md-10">Add New Field:</label>
             <div class="col-md-9">
-                <select class="form-control" ng-model="model.fieldType">
-                    <option selected="selected">Single Line Text Field</option>
+                <select class="form-control" ng-model="type">
+                    <option>Single Line Text Field</option>
                     <option>Multi Line Text Field</option>
                     <option>Date Field</option>
                     <option>Dropdown Field</option>
@@ -166,7 +165,7 @@
                 </select>
             </div>
             <ul class="col-md-3">
-                <button type="button" class="btn btn-primary" ng-click="addField(model.fieldType)" aria-label="Right Align">
+                <button type="button" class="btn btn-primary" ng-click="addField(type)" aria-label="Right Align">
                     <span class="glyphicon glyphicon-plus"></span></button>
             </ul>
         </div>

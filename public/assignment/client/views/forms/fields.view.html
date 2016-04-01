@@ -134,16 +134,16 @@
                         <div class="modal-body" style="padding:40px 50px;">
                             <div>
                                 <label class="control-label">Label</label>
-                                <input type="text" class="form-control" ng-model="newField.label" >
+                                <input type="text" class="form-control" ng-model="selectedField.label" >
                                 <label class="control-label">Options</label>
-                                <textarea class="form-control" rows="5" ng-model="newField.options">
+                                <textarea class="form-control" rows="5" ng-model="selectedField.options">
                                     1.These can be enter in a textarea,one option per line2.You can use the following format: LABEL:VALUE
                                 </textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="updateField(field, newField)"><span class="glyphicon glyphicon-okay"></span> ok</button>
+                            <button type="submit" class="btn btn-primary btn-default pull-left" data-dismiss="modal" ng-click="updateField(field, selectedField)"><span class="glyphicon glyphicon-okay"></span> ok</button>
 
                         </div>
                     </div>

@@ -52,10 +52,19 @@ module.exports = function(app, userModel) {
 
     function register(req, res) {
         var user = req.body;
-        user = userModel.createUser(user);
-        req.session.currentUser = user;
-        console.log("register:", req.session.currentUser);
-        res.json(user);
+        user = userModel.createUser(user)
+            // handle model promise
+            .then(
+            // login user if promise resolved
+                function ( doc ) {
+                    req.session.currentUser = doc;
+                    res.json(user);
+                    },
+            // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                    }
+            );
     }
 
     function findUserByCredentials(req, res) {

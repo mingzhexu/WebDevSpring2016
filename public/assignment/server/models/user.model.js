@@ -4,9 +4,16 @@
 var mock = require("./user.mock.json");
 
 // load q promise library
-// var q = require("q");
+var q = require("q");
 
-module.exports = function() {
+module.exports = function(db, mongoose) {
+
+     // load user schema
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+
+    // create user model from schema
+    var UserModel = mongoose.model('User', UserSchema);
+
 
     var api = {
         findAllUsers : findAllUsers,
@@ -63,10 +70,24 @@ module.exports = function() {
     }
 
     function createUser(user) {
-        user._id = "ID_" + (new Date()).getTime();
-        console.log("newly created user with id:", user._id);
-        mock.push(user);
-        return user;
+        // use q to defer the response
+        var deferred = q.defer();
+
+        // insert new user with mongoose user model's create()
+        UserModel.create(user, function (err, doc) {
+
+            if (err) {
+                // reject promise if error
+                deferred.reject(err);
+            } else {
+                // resolve promise
+                deferred.resolve(doc);
+            }
+
+        });
+
+        // return a promise
+        return deferred.promise;
     }
 
     function findUserByCredentials(username, password) {

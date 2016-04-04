@@ -2,7 +2,7 @@
  * Created by mingzhexu on 3/21/16.
  */
 var mock = require("./form.mock.json");
-module.exports = function() {
+module.exports = function(db, mongoose) {
 
     var api = {
         findAllFormsForUser : findAllFormsForUser,

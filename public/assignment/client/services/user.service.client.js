@@ -27,7 +27,6 @@
 
         function logout()
         {
-            console.log("logout");
             return $http
                 .post("/api/assignment/logout");
         }

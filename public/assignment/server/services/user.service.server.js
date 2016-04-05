@@ -18,9 +18,19 @@ module.exports = function(app, userModel) {
 
     function getUserById(req, res)
     {
-        var id = req.params["id"];
-        var user = userModel.findUserById(id);
-        res.json(user);
+        var userId = req.params["id"];
+        // use model to find user by id
+        var user = userModel.findUserById(userId)
+            .then(
+                // return user if promise resolved
+                function (doc) {
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
     function getCurrentUser(req, res)
     {
@@ -71,15 +81,23 @@ module.exports = function(app, userModel) {
         var username = req.params["username"];
         var password = req.params["password"];
 
-        var user = userModel.findUserByCredentials(username, password);
-        req.session.currentUser = user;
-        res.json(user);
+        var user = userModel.findUserByCredentials(username, password)
+            .then(
+                function (doc) {
+                    req.session.currentUser = doc;
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function ( err ) {
+                    res.status(400).send(err);
+                }
+            )
     }
 
     function searchUsername(req, res)
     {
         var name = req.params["username"];
-        console.log(name);
+        console.log("in user service server", name);
         res.json(userModel.findUserByUsername(name));
     }
 

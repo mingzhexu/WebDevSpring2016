@@ -9,6 +9,7 @@ module.exports = function(mongoose) {
         password: String,
         firstName: String,
         lastName: String,
+        phone: String,
         email: String,
         roles: [String]
         // collection property sets

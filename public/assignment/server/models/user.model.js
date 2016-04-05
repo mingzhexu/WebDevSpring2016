@@ -47,12 +47,16 @@ module.exports = function(db, mongoose) {
     }
 
     function findUserByUsername (username) {
-        for(var u in mock) {
-            if( mock[u].username == username ) {
-                return mock[u];
+        var deferred = q.defer();
+        UserModel.findOne(username, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
             }
-        }
-        return null;
+            return null;
+        });
+        return deferred.promise;
     }
 
     function findAllUsers(){
@@ -61,12 +65,16 @@ module.exports = function(db, mongoose) {
 
     // use user model find by id
     function findUserById(userId) {
-        for(var u in mock) {
-            if( mock[u]._id === userId ) {
-                return mock[u];
+        var deferred = q.defer();
+        UserModel.findById(userId, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
             }
-        }
-        return null;
+            return null;
+        });
+        return deferred.promise;
     }
 
     function createUser(user) {
@@ -91,12 +99,28 @@ module.exports = function(db, mongoose) {
     }
 
     function findUserByCredentials(username, password) {
-        for(var u in mock) {
-            if( mock[u].username == username &&
-                mock[u].password == password) {
-                return mock[u];
-            }
-        }
-        return null;
+        var deferred = q.defer();
+
+        // find one retrieves one document
+        UserModel.findOne(
+
+            // first argument is predicate
+            { username: username, password: password },
+
+            // doc is unique instance matches predicate
+            function(err, doc) {
+
+                if (err) {
+                    // reject promise if error
+                    deferred.reject(err);
+                } else {
+                    // resolve promise
+                    deferred.resolve(doc);
+                }
+
+            });
+
+        return deferred.promise;
     }
+
 };

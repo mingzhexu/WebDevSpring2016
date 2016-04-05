@@ -31,7 +31,15 @@
                 return;
             }
             var new_user;
+            UserServices
+                .createUser(user)
+                .then(function(response){
+                    UserServices.setCurrentUser(user);
+                    $location.url("/profile");
+                    console.log("create new user:", $rootScope.currentUser._id);
+                });
 
+            /*
             UserServices
                 .findUserByUserName(user)
                 .then(function(response){
@@ -48,6 +56,9 @@
                             });
                     }
                 });
+
+
+            */
         }
     }
 })();

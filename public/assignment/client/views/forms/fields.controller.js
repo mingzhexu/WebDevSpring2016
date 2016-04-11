@@ -14,8 +14,8 @@
         FieldService
             .getFieldsForForm(formId)
             .then(function(response){
-                $scope.fields = response.data;
-                console.log("get all the fields: ", response.data)
+                $scope.fields = response;
+                console.log("get all the fields: ", response)
             });
 
         $scope.addField = function(fieldType){
@@ -24,8 +24,8 @@
                 .createFieldForForm(formId, fieldType)
                 .then(function(response)
                 {
-                    $scope.fields = response.data;
-                    console.log("success");
+                    $scope.fields = response;
+                    console.log(response);
                 });
         };
 
@@ -88,10 +88,13 @@
 
         $scope.deleteField = function(field)
         {
+            var index = $scope.fields.indexOf(field);
+            $scope.fields.splice(index,1);
+
             FieldService
                 .deleteFieldFromForm(formId, field._id)
                 .then(function(response){
-                    $scope.fields = response.data;
+                    //$scope.fields = response;
                     console.log("deleted");
                 });
         }

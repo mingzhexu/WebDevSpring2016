@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .factory("FormService", formService);
 
-    function formService($rootScope, $http) {
+    function formService($rootScope, $http, $q) {
 
         var services = {
             createFormForUser : createFormForUser,
@@ -42,8 +42,14 @@
         }
 
         function findAllFormsForUser(userId){
-            return $http
-                .get("/api/assignment/user/"+userId+"/form");
+            var deferred = $q.defer();
+            $http
+                .get("/api/assignment/user/" + userId +"/form")
+                .success(function(response){
+                    console.log("response in service client:",response);
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
         }
 
         function deleteFormById(formId){

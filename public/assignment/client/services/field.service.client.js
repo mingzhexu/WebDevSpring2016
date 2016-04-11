@@ -6,7 +6,7 @@
         .module("FormBuilderApp")
         .factory("FieldService", fieldService);
 
-    function fieldService($http) {
+    function fieldService($http, $q) {
 
 
         var services = {
@@ -67,7 +67,15 @@
 
         function getFieldsForForm(formId)
         {
-            return $http.get("/api/assignment/form/"+formId+"/fields");
+             var deferred = $q.defer();
+             $http
+                .get("/api/assignment/form/"+formId+"/fields")
+                .success(function(response){
+                    console.log("response in service client:",response);
+                    deferred.resolve(response);
+                });
+             return deferred.promise;
+
         }
 
         function getFieldForForm(formId, fieldId)
@@ -77,7 +85,14 @@
 
         function deleteFieldFromForm(formId, fieldId)
         {
-            return $http.delete("/api/assignment/form/"+formId+"/field/"+fieldId);
+            var deferred = $q.defer();
+            $http
+                .delete("/api/assignment/form/"+formId+"/field/"+fieldId)
+                .success(function(response){
+                    console.log("delete successful", response);
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
         }
 
         function updateField(formId, fieldId, field)

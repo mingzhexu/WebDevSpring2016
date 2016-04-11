@@ -7,19 +7,24 @@
         .controller("FormsController", FormsController);
 
     function FormsController($scope, $rootScope, FormService, UserServices) {
+        /*
+         UserServices
+         .getCurrentUser()
+         .then(function(response){
+         $rootScope.currentUser = response.data;
 
-        UserServices
-            .getCurrentUser()
-            .then(function(response){
-                $rootScope.currentUser = response.data;
+         });
+         */
 
-            });
         console.log("current user:", $rootScope.currentUser);
+
         FormService
             .findAllFormsForUser($rootScope.currentUser._id)
             .then(function(response){
-                if(response.data){
-                    $scope.forms = response.data;
+                if(response){
+                    console.log("response:", response);
+                    $scope.forms = response;
+                    console.log("all forms", $scope.forms);
                 }else{
                     console.log("error");
                 }
@@ -32,20 +37,25 @@
                 $scope.message = "You need to name the form";
                 return;
             }
+
             FormService
-                .findFormByName($rootScope.currentUser._id, form.title)
+                .createFormForUser($rootScope.currentUser._id, form)
                 .then(function(response){
-                    if(response.data) {
-                        $scope.message = "You have that form";
+                    if(response.data){
+                        console.log(response.data);
+                    }
+                });
+            $scope.form = {};
+
+            FormService
+                .findAllFormsForUser($rootScope.currentUser._id)
+                .then(function(response){
+                    console.log(response, "is the response");
+                    if(response.data){
+                        $scope.forms = response.data;
+                        console.log("all the forms", $scope.forms);
                     }else{
-                        FormService
-                            .createFormForUser($rootScope.currentUser._id, form)
-                            .then(function(response){
-                                if(response.data){
-                                    $scope.forms.push(response.data);
-                                }
-                            });
-                        $scope.form = "";
+                        console.log("error");
                     }
                 });
         };

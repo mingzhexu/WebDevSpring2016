@@ -42,7 +42,16 @@ module.exports = function(app, userModel, formModel) {
     function findAllForms(req, res)
     {
         var userId = req.params.userId;
-        res.json(formModel.findAllFormsForUser(userId));
+        var forms = formModel.findAllFormsForUser(userId)
+            .then(
+                function(doc){
+                    res.json(doc);
+                    console.log("server service find all", userId, forms);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function removeFormById(req, res)
@@ -56,8 +65,16 @@ module.exports = function(app, userModel, formModel) {
     {
         var form = req.body;
         var userId = req.params.userId;
-        var newForm = formModel.createForm(userId, form);
-        res.json(newForm);
+        console.log("for server service", form);
+        var newForm = formModel.createForm(userId, form)
+            .then(
+                function(doc){
+                    res.json(form);
+                },
+                function (err){
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function updateFormById(req, res)

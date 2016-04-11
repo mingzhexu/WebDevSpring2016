@@ -23,9 +23,16 @@ module.exports = function(app, userModel, formModel)
     function findFormFields(req, res)
     {
         var formId = req.params["formId"];
-        var fields = [];
-        fields = formModel.findFormFields(formId);
-        res.json(fields);
+        var form = formModel.findFormById(formId)
+            .then(
+                function(doc){
+                    //console.log("form fields", doc, doc.fields);
+                    res.json(doc.fields);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function removeFormFieldById(req, res)
@@ -34,17 +41,21 @@ module.exports = function(app, userModel, formModel)
         var fieldId = req.params["fieldId"];
         console.log("field server service", fieldId);
         var fields = formModel.removeFormFieldById(formId, fieldId);
-        console.log("field server service", fields);
         res.json(fields);
     }
 
-    function createFormField(req, res){
+    function createFormField(req, res) {
         var formId = req.params["formId"];
-
         var field = req.body;
 
-        var fields = formModel.createFormField(formId, field);
-        res.json(fields);
+        var fields = formModel.createFormField(formId, field)
+            .then(
+                function (form) {
+                    res.json(form.fields);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
     }
 
     function updateFormFieldById(req, res)

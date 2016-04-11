@@ -69,11 +69,11 @@ module.exports = function(app, userModel) {
                 function ( doc ) {
                     req.session.currentUser = doc;
                     res.json(user);
-                    },
+                },
             // send error if promise rejected
                 function ( err ) {
                     res.status(400).send(err);
-                    }
+                }
             );
     }
 

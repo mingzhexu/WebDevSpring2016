@@ -14,10 +14,16 @@
             getFieldsForForm: getFieldsForForm,
             getFieldForForm: getFieldForForm,
             deleteFieldFromForm: deleteFieldFromForm,
-            updateField: updateField
+            updateField: updateField,
+            createFieldForFormWithField: createFieldForFormWithField
         };
 
         return services;
+
+        function createFieldForFormWithField(formId, field)
+        {
+            return $http.post("/api/assignment/form/"+formId+"/field", field);
+        }
 
         function createFieldForForm(formId, fieldType)
         {

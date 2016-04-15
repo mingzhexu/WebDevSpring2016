@@ -51,8 +51,9 @@ module.exports = function(db, mongoose) {
         var deferred = q.defer();
 
         FormModel.findById(formId, function(err,doc){
-            doc.title = user.title;
-            doc.fields = user.fields;
+            doc.title = form.title;
+            doc.fields = form.fields;
+            console.log("update in model", form.title);
             doc.save(function(err,doc){
                 if(err){
                     deferred.reject(err);
@@ -86,6 +87,7 @@ module.exports = function(db, mongoose) {
             created:new Date(),
             updated:new Date()
         });
+
         console.log("new form:,",newform);
         var deferred = q.defer();
         newform.save(function (err,doc){

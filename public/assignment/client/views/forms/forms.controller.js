@@ -41,23 +41,23 @@
             FormService
                 .createFormForUser($rootScope.currentUser._id, form)
                 .then(function(response){
-                    if(response.data){
-                        console.log(response.data);
+                    if(response){
+                        console.log(response, "is the create");
+                        FormService
+                            .findAllFormsForUser($rootScope.currentUser._id)
+                            .then(function(response){
+                                console.log(response, "is the response");
+                                if(response){
+                                    $scope.forms = response;
+                                    console.log("all the forms", $scope.forms);
+                                }else{
+                                    console.log("error");
+                                }
+                            });
                     }
                 });
             $scope.form = {};
 
-            FormService
-                .findAllFormsForUser($rootScope.currentUser._id)
-                .then(function(response){
-                    console.log(response, "is the response");
-                    if(response.data){
-                        $scope.forms = response.data;
-                        console.log("all the forms", $scope.forms);
-                    }else{
-                        console.log("error");
-                    }
-                });
         };
 
         $scope.selectForm = function(form){
@@ -76,6 +76,25 @@
             var index = $scope.selectedFormIndex;
 
             FormService
+                .updateFormById(form._id, form)
+                .then(function(response){
+                    if(response){
+                        FormService
+                            .findAllFormsForUser($rootScope.currentUser._id)
+                            .then(function(response){
+                                console.log(response, "is the response");
+                                if(response){
+                                    $scope.forms = response;
+                                    console.log("all the forms", $scope.forms);
+                                }else{
+                                    console.log("error");
+                                }
+                            });
+                    }
+                });
+            $scope.form = "";
+            /*
+            FormService
                 .findFormByName($rootScope.currentUser._id, form.title)
                 .then(function(response){
                     if(response.data) {
@@ -92,7 +111,7 @@
                             });
                         $scope.form = "";
                     }
-                });
+                });*/
             console.log("controller: ", form._id, form);
 
         };

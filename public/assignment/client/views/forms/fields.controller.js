@@ -24,9 +24,26 @@
                 .createFieldForForm(formId, fieldType)
                 .then(function(response)
                 {
-                    $scope.fields = response;
-                    console.log(response);
+                    FieldService
+                        .getFieldsForForm(formId)
+                        .then(function(response){
+                            $scope.fields = response;
+                            console.log(response);
+                        });
                 });
+        };
+
+        $scope.addFieldInfo = function(field){
+            FieldService
+              .createFieldForFormWithField(formId, field)
+              .then(function(response){
+                  FieldService
+                      .getFieldsForForm(formId)
+                      .then(function(response){
+                          $scope.fields = response;
+                          console.log(response);
+                      });
+              });
         };
 
         $scope.editField=function(field)

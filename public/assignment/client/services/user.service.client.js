@@ -54,32 +54,32 @@
         function findUserById(id)
         {
             return $http
-                .get("api/assignment/user/"+id);
+                .get("api/assignment/admin/user/"+id);
         }
 
         function findAllUsers()
         {
             return $http
-                .get("/api/assignment/user");
+                .get("/api/assignment/admin/user");
         }
 
         function createUser(user)
         {
             return $http
-                .post("/api/assignment/register", user);
+                .post("/api/assignment/admin/user", user);
         }
 
         function deleteUserById(userId)
         {
             return $http
-                .delete("/api/assignment/user/" + userId);
+                .delete("/api/assignment/admin/user/" + userId);
         }
 
         function updateUser(userId, user)
         {
             console.log("update user in client service:", userId, user);
             return $http
-                .put("/api/assignment/user/" + userId, user);
+                .put("/api/assignment/admin/user/" + userId, user);
         }
 
         function findUserByUserName(user)

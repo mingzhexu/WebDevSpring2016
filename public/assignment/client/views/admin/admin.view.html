@@ -4,44 +4,77 @@
 
             <h1 class="page-header">Admin</h1>
             <h2>Users</h2>
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th class="col-md-3">
+                        <span class="glyphicon glyphicon-triangle-bottom" ng-click="sortAscending('username','descending')"></span>
+                        <span class="glyphicon glyphicon-triangle-top" ng-click="sortAscending('username','ascending')"></span>
+                        Username</th>
 
-            <div class="table table-responsive">
-                <table class="table table-striped">
-                    <tr class="active">
-                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Username</th>
-                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Password</th>
-                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Role</th>
-                        <th><span class="glyphicon glyphicon-triangle-bottom"></span>Actions</th>
-                    </tr>
-                    <tr>
-                        <td> <input type="text" class="form-control" ng-model="person.username" placeholder="username"> </td>
-                        <td> <input type="password" class="form-control" ng-model="person.password" placeholder="password"> </td>
-                        <td> <input type="text" class="form-control" ng-model="person.roles" placeholder="role1, role2"> </td>
+                    <th class="col-md-2">
+                        Password</th>
 
-                        <td> <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="addUser(person)">
-                                <span class="glyphicon glyphicon-plus"></span></button>
-                             <button type="button" class="btn btn-default" aria-label="Right Align" ng-click="updateUser(person)">
-                                <span class="glyphicon glyphicon-ok"></span></button>
-                        </td>
-                    </tr>
-                    <tr ng-repeat="person in users">
-                        <td>{{person.username}}</td>
-                        <td>{{person.password}}</td>
-                        <td>{{person.roles}}</td>
-                        <td>
-                            <button ng-click="deleteUser(person)" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove"></span></button>
-                            <button ng-click="selectUser(person)" class="btn btn-info">
-                                <span class="glyphicon glyphicon-pencil"></span></button>
-                        </td>
-                    </tr>
-                </table>
-                <li ng-repeat="person in users">
-                    <a href="#/profile/{{}}">{{person.username}}</a>
-                </li>
-                {{users}}
+                    <th class="col-md-2">
+                        <span class="glyphicon glyphicon-triangle-bottom" ng-click="sortAscending('firstName','descending')"></span>
+                        <span class="glyphicon glyphicon-triangle-top" ng-click="sortAscending('firstName','ascending')"></span>
+                        FirstName</th>
 
-            </div>
+                    <th class="col-md-2">
+                        <span class="glyphicon glyphicon-triangle-bottom" ng-click="sortAscending('lastName','descending')"></span>
+                        <span class="glyphicon glyphicon-triangle-top" ng-click="sortAscending('lastName','ascending')"></span>
+                        LastName</th>
+
+                    <th class="col-md-2">
+                        Phones</th>
+
+                    <th class="col-md-2">
+                        Email</th>
+
+                    <th class="col-md-3">Roles</th>
+                    <th class="col-md-2">
+                        Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td ><input class="form-control"  type="text" placeholder="username" ng-model="newUser.username"></td>
+                    <td ><input class="form-control"  type="text" placeholder="password" ng-model="newUser.password"></td>
+                    <td ><input class="form-control"  type="text" placeholder="firstName" ng-model="newUser.firstName"></td>
+                    <td ><input class="form-control"  type="text" placeholder="lastName" ng-model="newUser.lastName"></td>
+                    <td ><input class="form-control"  type="text" placeholder="phone" ng-model="newUser.phones"></td>
+                    <td ><input class="form-control"  type="text" placeholder="email" ng-model="newUser.email"></td>
+                    <td ><input class="form-control"  type="text" placeholder="role1,role2" ng-model="newUser.roles"></td>
+                    <td >
+                        <button type="button" class="btn btn-default" aria-label="glyphicon-remove">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true" ng-click="addUser(newUser)"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" aria-label="glyphicon-ok" >
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true" ng-click="updateUser(newUser)"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr ng-repeat = "user in users">
+                    <td>{{user.username}}</td>
+                    <td></td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.phones}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.roles}}</td>
+
+                    <td>
+                        <button type="button" class="btn btn-default" aria-label="glyphicon-remove" ng-click="deleteUser(user)">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" aria-label="glyphicon-pencil"  ng-click="selectUser(user)">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .factory("UserServices", userService);
 
-    function userService($http, $rootScope)
+    function userService($http, $rootScope, $q)
     {
 
         var services = {
@@ -20,10 +20,21 @@
             findUserByUserName: findUserByUserName,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
-            logout : logout
+            logout : logout,
+            sortAscending: sortAscending
         };
 
         return services;
+
+        function sortAscending(category,dir){
+            var deferred = $q.defer();
+            $http
+                .get("/api/assignment/admin/sort?category=" + category + "&dir=" + dir)
+                .success(function(users){
+                    deferred.resolve(users);
+                });
+            return deferred.promise;
+        }
 
         function logout()
         {

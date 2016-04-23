@@ -1,67 +1,57 @@
 /**
  * Created by mingzhexu on 2/25/16.
  */
+"use strict";
 (function() {
     angular
         .module("FormBuilderApp")
         .controller("AdminController", AdminController);
 
     function AdminController($scope, UserServices) {
-        var callback = function(response){
-            $scope.users = response;
-        }
-        UserServices.findAllUsers(callback);
+        UserServices
+            .findAllUsers()
+            .then(handleSuccess, handleError);
 
-        $scope.deleteUser = function(user){
-            var user_id = user._id;
-            var callback = function(response){
-                $scope.user = response;
-            }
-            console.log(user_id);
-            console.log(user.username);
-            UserServices.deleteUserById(user_id, callback);
+        $scope.sortAscending = function(category,up){
+            UserServices
+                .sortAscending(category,up)
+                .then(handleSuccess,handleError);
+        };
 
-
-        }
-
-        $scope.selectUser=function(user){
-
-            $scope.selectedUserIndex = $scope.users.indexOf(user);
-            $scope.person = {
-                username: user.username,
-                password: user.password,
-                roles: user.roles
-            };
-            console.log("select user at: " + $scope.selectedUserIndex);
-            console.log($scope.person.username);
-        }
-
-        $scope.updateUser=function(user){
-            var user_id = user._id;
-            console.log("update user at: " + $scope.selectedUserIndex);
-            $scope.users[$scope.selectedUserIndex].username= user.username;
-            $scope.users[$scope.selectedUserIndex].password= user.password;
-            $scope.users[$scope.selectedUserIndex].roles= user.roles;
-
-            console.log("update user in controller");
-            console.log($scope.users[$scope.selectedUserIndex].username);
-            $scope.person = {};
+        $scope.updateUser = function(user){
+            var userId = user._id;
+            UserServices
+                .updateUser(userId,user)
+                .then(handleSuccess, handleError);
         }
 
         $scope.addUser = function(user){
-            console.log("adduser!");
+            UserServices
+                .createUser(user)
+                .then(handleSuccess, handleError);
 
-            var new_user = {
-                username: user.username,
-                password: user.password,
-                roles: user.roles
-            }
+        }
 
-            var callback = function(response){
-                $scope.users = response;
-            }
-            UserServices.createUser(new_user, callback);
-            $scope.person = {};
+        $scope.deleteUser = function(user){
+            var userId = user._id;
+            UserServices
+                .deleteUserById(userId)
+                .then(handleSuccess, handleError);
+        }
+
+        $scope.selectUser = function(user){
+            $scope.newUser = angular.copy(user);
+        }
+
+        function handleSuccess(response) {
+            $scope.users = response.data;
+            console.log(response.data, "the users");
+            $scope.newUser = null;
+        }
+
+        function handleError(error) {
+            console.log("error in constroller");
+            vm.error = error;
         }
     }
 })();

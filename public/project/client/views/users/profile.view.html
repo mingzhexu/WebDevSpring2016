@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Profile</h1>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#/profile">Profile</a></li>
+                <li role="presentation" ng-show="currentUser.roles.indexOf('instructor') >= 0"><a href="#/students">Students</a></li>
+                <li role="presentation"><a href="#/enrollments" ng-hide="currentUser.roles.indexOf('instructor') >= 0">Enrollments</a></li>
+                <li role="presentation"><a href="#/courses" ng-hide="currentUser.roles.indexOf('instructor') >= 0">Accomplishments</a></li>
+            </ul>
+            <form role="form">
+                <div class="form-group">
+                    <label class="control-label col-md-10" >UserName:</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="Username" ng-model="currentUser.username">
+                    </div>
+                    <label class="control-label col-md-10" for="FirstName">First Name:</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="FirstName" ng-model="currentUser.firstName">
+                    </div>
+                    <label class="control-label col-md-10" for="LastName">Last Name:</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="LastName" ng-model="currentUser.lastName">
+                    </div>
+                    <label class="control-label col-md-10" for="Email">Email:</label>
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" id="Email" ng-model="currentUser.email">
+                    </div>
+                    <label class="control-label col-md-10">Date of Birth:</label>
+                    <div class="col-md-6">
+                        <input type="date" class="form-control" ng-model="currentUser.dob" placeholder="Select Date">
+                    </div>
+                    <label class="control-label col-md-10">Role: </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" ng-model="currentUser.roles" placeholder="Student or Instructor">
+                    </div>
+                    <div class="col-sm-offset-6 col-sm-10">
+                        <button type="submit" ng-click="update(currentUser)" class="btn btn-primary">Update</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

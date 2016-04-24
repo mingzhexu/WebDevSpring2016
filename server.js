@@ -67,3 +67,4 @@ var db = mongoose.connect(connection_string);
 app.listen(port, ipaddress);
 
 require("./public/assignment/server/app.js")(app,mongoose,db);
+require("./public/project/server/app.js")(app,mongoose,db);

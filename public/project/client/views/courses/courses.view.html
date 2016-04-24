@@ -16,15 +16,13 @@
                 </li>
             </ul>
             <div ng-show="currentUser"><strong>My Courses:</strong></div>
-            <ul ng-repeat="course in mycourses" class="list-group">
+            <ul ng-repeat="course in courses" class="list-group">
                 <li class="list-group-item">
                     <strong>{{course.title}}</strong>
-                    <div>{{course.instructor}} | {{course.school}}</div>
+                    <div>{{course.instructors}} | {{course.school}}</div>
                     <div class="text-muted"><small>{{course.info}}</small></div>
                 </li>
             </ul>
-
-
         </div>
     </div>
 </body>

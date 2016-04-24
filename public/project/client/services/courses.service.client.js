@@ -1,0 +1,135 @@
+/**
+ * Created by mingzhexu on 3/4/16.
+ */
+(function()
+{
+    angular
+        .module("LearningMgmtApp")
+        .factory("CourseServices", CourseServices);
+
+    function CourseServices($rootScope, $http){
+
+        var services = {
+            findAllCourses : findAllCourses,
+            findCourseByTitle: findCourseByTitle,
+            findCourseByUser: findCourseByUser,
+            createCourse: createCourse,
+            /*
+            updateCourse: updateCourse,
+            deleteCourseById : deleteCourseById,
+            findCoursesById: findCoursesById,
+            searchCoursesByKeyword: searchCoursesByKeyword,
+            setResult: setResult,
+            getResult: getResult,
+            */
+            setCurrentCourse: setCurrentCourse,
+            getCurrentCourse: getCurrentCourse
+        };
+
+        return services;
+
+        function findCourseByTitle(title)
+        {
+            return $http
+                .get("/api/project/course"+title);
+        }
+
+        function findCourseByUser(user)
+        {
+            return $http
+                .get("/api/project/user/course/"+user._id);
+        }
+
+        function createCourse(course)
+        {
+            return $http
+                .post("/api/project/course/", course);
+        }
+
+        function findAllCourses()
+        {
+            return $http.get("/api/project/courses/");
+        }
+
+        function setCurrentCourse(course){
+            $rootScope.currentCourse = course;
+
+        }
+        function getCurrentCourse(){
+            return $rootScope.currentCourse;
+        }
+/*
+        function searchCoursesByKeyword(keyword, callback)
+        {
+            var arrayLength = courses.length;
+            var result = [];
+            for (var i = 0; i < arrayLength; i++)
+            {
+                var up = courses[i].title.toUpperCase();
+                var key = keyword.toUpperCase();
+                if(up.indexOf(key) > -1 )
+                {
+                    result.push(courses[i]);
+                }
+            }
+            callback(result);
+        }
+
+        function findCoursesById(ids, callback)
+        {
+            var result = [];
+            for(var i = 0; i < courses.length; i++){
+                var find = ids.indexOf(courses[i].id);
+                if(find > -1){
+                    result.push(courses[i]);
+                }
+            }
+            callback(result);
+        }
+
+
+
+        function deleteCourseById(courseId, callback)
+        {
+            var arrayLength = users.length;
+            for (var i = 0; i < arrayLength; i++)
+            {
+                if(courses[i].id == courseId)
+                {
+                    courses.splice(i, 1);
+                    //console.log("delete executed in service?");
+                    callback(courses);
+                }
+            }
+        }
+
+        function updateCourse(courseId, course, callback)
+        {
+            var arrayLength = users.length;
+            for (var i = 0; i < arrayLength; i++)
+            {
+                if(courses[i]._id == courseId)
+                {
+                    courses[i] = course;
+                    callback(course);
+                }
+            }
+            callback(null);
+        }
+
+        function setResult(result, callback)
+        {
+            $rootScope.result = result;
+            //console.log("set the current user: ");
+            //console.log($rootScope.currentUser);
+            callback(result);
+        }
+
+        function getResult (callback) {
+            callback($rootScope.result);
+        }
+
+ */
+    }
+
+})();

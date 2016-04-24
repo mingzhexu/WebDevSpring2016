@@ -16,22 +16,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="css/dashboard.css" rel="stylesheet">
 
-    <script src="learningMgmt/app.js"></script>
-    <script src="learningMgmt/config.js"></script>
-    <script src="learningMgmt/services/user.service.client.js"></script>
-    <script src="learningMgmt/services/courses.service.client.js"></script>
-    <script src="learningMgmt/views/main/main.controller.js"></script>
-    <script src="learningMgmt/views/users/profile.controller.js"></script>
-    <script src="learningMgmt/views/users/enrollment.controller.js"></script>
-    <script src="learningMgmt/views/users/login.controller.js"></script>
-    <script src="learningMgmt/views/users/instructor.controller.js"></script>
-    <script src="learningMgmt/views/users/register.controller.js"></script>
-    <script src="learningMgmt/views/home/home.controller.js"></script>
-    <script src="learningMgmt/views/home/result.controller.js"></script>
-    <script src="learningMgmt/views/header/header.controller.js"></script>
-    <script src="learningMgmt/views/sidebar/sidebar.controller.js"></script>
-    <script src="learningMgmt/views/courses/courses.controller.js"></script>
-    <script src="learningMgmt/views/courses/detail.controller.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <script src="services/user.service.client.js"></script>
+    <script src="services/courses.service.client.js"></script>
+
+    <script src="views/main/main.controller.js"></script>
+    <script src="views/users/profile.controller.js"></script>
+    <script src="views/users/enrollment.controller.js"></script>
+    <script src="views/users/login.controller.js"></script>
+    <script src="views/users/instructor.controller.js"></script>
+    <script src="views/users/register.controller.js"></script>
+    <script src="views/users/student.controller.js"></script>
+    <script src="views/home/home.controller.js"></script>
+    <script src="views/home/result.controller.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <script src="views/sidebar/sidebar.controller.js"></script>
+    <script src="views/courses/courses.controller.js"></script>
+    <script src="views/courses/detail.controller.js"></script>
 
 </head>
 
@@ -39,10 +42,10 @@
     <div ng-controller="MainController">
         <div class="container-fluid">
             <div class="row">
-                <div ng-include="'learningMgmt/views/header/header.view.html'"></div>
+                <div ng-include="'views/header/header.view.html'"></div>
             </div>
             <div class="row">
-                <div ng-include="'learningMgmt/views/sidebar/sidebar.view.html'"></div>
+                <div ng-include="'views/sidebar/sidebar.view.html'"></div>
             </div>
             <div ng-view></div>
         </div>

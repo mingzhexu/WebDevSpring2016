@@ -1,18 +1,18 @@
 /**
- * Created by mingzhexu on 3/21/16.
+ * Created by mingzhexu on 4/23/16.
  */
-var mock = require("./user.mock.json");
+//var mock = require("./user.mock.json");
 
 // load q promise library
 var q = require("q");
 
 module.exports = function(db, mongoose) {
 
-     // load user schema
-    var UserSchema = require("./user.schema.server.js")(mongoose);
+    // load user schema
+    var StudentSchema = require("./user.schema.server.js")(mongoose);
 
     // create user model from schema
-    var UserModel = mongoose.model('User', UserSchema);
+    var UserModel = mongoose.model('Student', StudentSchema);
 
 
     var api = {
@@ -23,7 +23,7 @@ module.exports = function(db, mongoose) {
         createUser: createUser,
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
-        sortCategory:sortCategory
+        findAllStudents: findAllStudents
     };
     return api;
 
@@ -41,6 +41,21 @@ module.exports = function(db, mongoose) {
         });
         return deferred.promise;
         //return mock;
+    }
+
+    function findAllStudents(){
+        var deferred = q.defer();
+
+        UserModel.find({roles:["student"]}, function(err, doc){
+            if (err) {
+                deferred.reject(err);
+            } else {
+                console.log(doc, "is the students in model");
+                deferred.resolve(doc);
+            }
+            return null;
+        });
+        return deferred.promise;
     }
 
     function updateUser(userId, user){
@@ -153,43 +168,6 @@ module.exports = function(db, mongoose) {
             }
             return null;
         });
-        return deferred.promise;
-    }
-
-    function sortCategory(category, dir){
-        var deferred = q.defer();
-        if(dir == 'descending'){
-            dir = -1;
-        }else{
-            dir = 1;
-        }
-        if(category == "username"){
-            UserModel.find({}, null, {sort: {username: dir}}, function (err, users) {
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(users);
-                }
-            });
-        }
-        if(category == "lastName"){
-            UserModel.find({}, null, {sort: {lastName: dir}}, function (err, users) {
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(users);
-                }
-            });
-        }
-        if(category == "firstName"){
-            UserModel.find({}, null, {sort: {firstName: dir}}, function (err, users) {
-                if(err){
-                    deferred.reject(err);
-                }else{
-                    deferred.resolve(users);
-                }
-            });
-        }
         return deferred.promise;
     }
 };

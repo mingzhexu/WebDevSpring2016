@@ -40,7 +40,34 @@
             }
 
             var new_user;
+/*
+            UserServices
+                .findUserByUsername(user.username)
+                .then(
+                    function (response) {
+                        if(length(response.data) > 0){
+                            console.log(response.data);
+                            console.log("user exist");
+                            $scope.message = "User already exists";
+                            return;
+                        }else{
 
+                        }
+                    }
+                );
+*/
+            UserServices
+                .createUser(user)
+                .then(function (response) {
+                    console.log("user create");
+                    UserServices.setCurrentUser(user);
+                    $location.url("/profile");
+                    console.log("create new user:", $rootScope.currentUser._id);
+                });
+        }
+    }
+
+/*
             var findUser = function(response){
                 new_user = response;
             }
@@ -58,6 +85,6 @@
             UserServices.setCurrentUser(user,newUser);
             $location.url("/profile");
         }
-
     }
+*/
 })();

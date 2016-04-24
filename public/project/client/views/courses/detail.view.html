@@ -10,7 +10,7 @@
         <h1 class="page-header">{{course.title}}<div><small>{{course.school}}</small></div></h1>
         <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
         <h4>About This Course: </h4>
-        <div class="text-success">Professor: {{course.instructor}}</div>
+        <div class="text-success">Professor: {{course.instructors}}</div>
         <p>{{course.info}}</p>
         <button type="button" class="btn btn-default" ng-hide="currentUser.roles.indexOf('instructor') >= 0"><a  ng-click="register(course)">Register</a></button>
     </div>

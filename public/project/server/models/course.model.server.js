@@ -16,7 +16,9 @@ module.exports = function(db, mongoose) {
     var api = {
         findCourseByUserId: findCourseByUserId,
         createCourse: createCourse,
-        findAllCourses : findAllCourses
+        findAllCourses : findAllCourses,
+        studentEnroll: studentEnroll,
+        studentWithdrew: studentWithdrew
         /*
         updateUser: updateUser,
         deleteUserById : deleteUserById,
@@ -28,20 +30,25 @@ module.exports = function(db, mongoose) {
 
     function findCourseByUserId(userId){
         var deferred = q.defer();
-        CourseModel.find({instructors:[userId]}, function(err, doc){
+        CourseModel.find({instructorId:[userId]}, function(err, doc){
             if(err){
-               /* CourseModel.find({students:{$in: userId}}, function(err1, doc1){
-                    if(err1){
-                        deferred.reject(err1);
-                    }else{
-                        deferred.resolve(doc1);
-                        console.log("find courses for user student", doc1);
-                    }
-                });*/
                 deferred.reject(err);
             }else{
                 console.log("find courses for user", doc);
-                deferred.resolve(doc);
+                if(doc.length == 0){
+                    console.log("no courses for user isntr", err);
+                    CourseModel.find({studentId:{$in: [userId]}}, function(err1, doc1){
+                        if(err1){
+                            console.log("no find courses for user student", err1);
+                            deferred.resolve(err);
+                        }else{
+                            deferred.resolve(doc1);
+                            console.log("find courses for user student", doc1);
+                        }
+                    });
+                }else{
+                    deferred.resolve(doc);
+                }
             }
         });
         return deferred.promise;
@@ -72,15 +79,69 @@ module.exports = function(db, mongoose) {
                 deferred.reject(err);
             } else {
                 // resolve promise
+                console.log("in model", doc);
                 deferred.resolve(doc);
             }
         });
-
         // return a promise
         return deferred.promise;
     }
 
+    function studentEnroll(courseId, student){
+        var deferred = q.defer();
+        CourseModel
+            .findById(courseId, function(err, doc){
+                if(err){
+                    deferred.reject(err);
+                    console.log("reject in first");
+                }else{
+                    console.log(doc.students);
+                    if(doc.studentId.indexOf(student._id) < 0){
+                        doc.studentId.push(student._id);
+                        doc.students.push(student.firstName + " " + student.lastName);
+                        console.log("in model", "enroll student", doc.students);
+                        doc.save (function (err1, doc1) {
+                            if (err1) {
+                                console.log("reject in 2");
+                                deferred.reject(err);
+                            } else {
+                                // resolve promise with user
+                                deferred.resolve (doc1);
+                            }
+                        });
+                    }else{
+                        deferred.resolve(doc);
+                    }
+                }
+        });
+        // return a promise
+        return deferred.promise;
+    }
 
+    function studentWithdrew(courseId, student){
+        var deferred = q.defer();
+        CourseModel
+            .findById(courseId, function(err, doc){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    console.log(doc);
+                    var index = doc.studentId.indexOf(student._id);
+                    doc.studentId.splice(index,1);
+                    index = doc.students.indexOf(student.firstName + " "+student.lastName);
+                    doc.students.splice(index, 1);
+                    doc.save(function(err1, doc1){
+                        if(err1){
+                            deferred.reject(err);
+                        }else{
+                            deferred.resolve(doc1);
+                        }
+
+                    })
+                }
+            })
+        return deferred.promise;
+    }
     /*
         function updateUser(userId, user){
 

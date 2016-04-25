@@ -8,18 +8,23 @@
     <div class="container-fluid">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Courses</h1>
-            <ul ng-repeat="course in courses" class="list-group">
+            <div ng-show="currentUser"><strong>My Courses:</strong>
+                <div ng-show="message">{{message}}</div>
+
+                <ul ng-repeat="course in courses" class="list-group">
+                    <li class="list-group-item">
+                        <strong><a ng-click="select(course)" href="#/enrollments">{{course.title}}</a></strong>
+                        <div><strong ng-repeat = "instructor in course.instructors">{{instructor}}</strong> | {{course.school}}</div>
+                        <div class="text-muted"><small>{{course.info}}</small></div>
+                    </li>
+                </ul>
+            </div>
+
+            <strong>All Courses:</strong>
+            <ul ng-repeat="course in allcourses" class="list-group">
                 <li class="list-group-item">
                     <strong><a ng-click="select(course)" href="#/detail">{{course.title}}</a></strong>
-                    <div>{{course.instructor}} | {{course.school}}</div>
-                    <div class="text-muted"><small>{{course.info}}</small></div>
-                </li>
-            </ul>
-            <div ng-show="currentUser"><strong>My Courses:</strong></div>
-            <ul ng-repeat="course in courses" class="list-group">
-                <li class="list-group-item">
-                    <strong>{{course.title}}</strong>
-                    <div>{{course.instructors}} | {{course.school}}</div>
+                    <div><strong ng-repeat = "instructor in course.instructors">{{instructor}}</strong> | {{course.school}}</div>
                     <div class="text-muted"><small>{{course.info}}</small></div>
                 </li>
             </ul>

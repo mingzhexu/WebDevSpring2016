@@ -23,7 +23,8 @@ module.exports = function(db, mongoose) {
         createUser: createUser,
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
-        findAllStudents: findAllStudents
+        findAllStudents: findAllStudents,
+        studentEnroll: studentEnroll
     };
     return api;
 
@@ -167,6 +168,50 @@ module.exports = function(db, mongoose) {
                 deferred.resolve(doc);
             }
             return null;
+        });
+        return deferred.promise;
+    }
+
+    function studentEnroll(studentId, courseId){
+        var deferred = q.defer();
+        UserModel.findOne(studentId, function(err, doc){
+            if(err){
+                deferred.reject(err);
+            }else{
+                doc.courses.push(courseId);
+                doc.save (function (err1, doc1) {
+                    if (err1) {
+                        deferred.reject(err);
+                    } else {
+                        // resolve promise with user
+                        deferred.resolve (doc1);
+                    }
+                });
+            }
+        });
+        return deferred.promise;
+    }
+    function studentWithdrew(studentId, courseId){
+
+        var deferred = q.defer();
+
+        UserModel.findOne(studentId, function(err, doc){
+            if(err){
+                console.log("err1");
+                deferred.reject(err);
+            }else{
+                var index = doc.courses.indexOf(courseId);
+                console.log("student withdrew in user", doc.courses);
+                doc.courses.splice(index);
+                doc.save(function(err1, doc1){
+                    if(err1){
+                        console.log("err2");
+                        deferred.reject(err);
+                    }else{
+                        deferred.resolve(doc1);
+                    }
+                })
+            }
         });
         return deferred.promise;
     }

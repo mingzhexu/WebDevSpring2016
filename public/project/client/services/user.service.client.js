@@ -21,7 +21,6 @@
             findUserByUsername: findUserByUsername,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
-            getCoursesByUser:getCoursesByUser,
             addCourse: addCourse,
             deleteCourse:deleteCourse
         };
@@ -92,14 +91,6 @@
                 .get("/api/project/loggedin");
         }
 
-        function getCoursesByUser(user){
-            for (var i = 0; i < users.length; i++){
-                if(users[i]._id == user._id){
-                    callback(users[i].courses);
-                }
-            }
-            callback(null);
-        }
 
         function addCourse(user, course){
             for(var i = 0; i < users.length; i++) {

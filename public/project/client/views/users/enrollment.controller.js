@@ -12,31 +12,21 @@
         $scope.$location = $location;
 
         if($rootScope.currentUser){
-            var callback = function(response){
-                if(!$scope.coursesId){
-                    $scope.coursesId = response;
-                }
-            }
-
-            var curCourses = function(response){
-                $scope.mycourses = response;
-            }
-            UserServices.getCoursesByUser($rootScope.currentUser, callback);
-            CourseServices.findCoursesById($scope.coursesId, curCourses);
-
+            CourseServices
+                .findCourseByUser($rootScope.currentUser)
+                .then(function(response){
+                    console.log(response.data, "length is ", response.data.length);
+                    if(response.data.length == 0){
+                        console.log("legnth is 0");
+                        $scope.message = "You haven't register any course yet!"
+                    }
+                    $scope.mycourses = response.data;
+                });
         }
 
         $scope.withdrew = function(course){
 
-            var callback = function(response){
-                if(response){
-                    console.log("successfully delete");
-                    $location.url("/enrollments");
-                    var index = $scope.mycourses.indexOf(course);
-                    $scope.mycourses.splice(index, 1);
-                }
-            }
-            UserServices.deleteCourse($rootScope.currentUser, course, callback);
+            CourseServices.studentWithdrew($rootScope.currentUser, course);
         }
 
     }

@@ -6,12 +6,19 @@
         .module("LearningMgmtApp")
         .controller("StudentController", StudentController);
 
-    function StudentController($scope, $rootScope, UserServices, $location){
+    function StudentController($scope, $rootScope, UserServices, CourseServices, $location){
 
         $scope.$location = $location;
 
         $scope.error = null;
         $scope.message = null;
+
+        CourseServices
+            .findCourseByUser($rootScope.currentUser)
+            .then(function(response){
+                $scope.courses = response.data;
+                console.log($scope.courses);
+            });
 
         UserServices
             .findAllStudents()

@@ -14,6 +14,11 @@
             findCourseByTitle: findCourseByTitle,
             findCourseByUser: findCourseByUser,
             createCourse: createCourse,
+            setCurrentCourse: setCurrentCourse,
+            getCurrentCourse: getCurrentCourse,
+            studentEnroll: studentEnroll,
+            getInstructors: getInstructors,
+            studentWithdrew: studentWithdrew
             /*
             updateCourse: updateCourse,
             deleteCourseById : deleteCourseById,
@@ -22,8 +27,7 @@
             setResult: setResult,
             getResult: getResult,
             */
-            setCurrentCourse: setCurrentCourse,
-            getCurrentCourse: getCurrentCourse
+
         };
 
         return services;
@@ -57,6 +61,18 @@
         }
         function getCurrentCourse(){
             return $rootScope.currentCourse;
+        }
+
+        function studentEnroll(course, student){
+            return $http.post("/api/project/student/"+student._id+"/course/"+course._id, student);
+        }
+
+        function getInstructors(courses){
+            return $http.get("/api/project/courses/instructors", courses);
+        }
+
+        function studentWithdrew(student, course){
+            return $http.put("/api/project/course/"+course._id+"/student/"+student._id, student);
         }
 /*
         function searchCoursesByKeyword(keyword, callback)

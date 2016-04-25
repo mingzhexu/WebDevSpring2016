@@ -9,10 +9,11 @@
     function InstructorController($scope, $rootScope, CourseServices, $location) {
         $scope.$location = $location;
 
-
         $scope.create = function(course){
 
-            course.instructors = $rootScope.currentUser._id;
+            course.instructorId = [$rootScope.currentUser._id];
+            course.instructors = [];
+            course.instructors.push([$rootScope.currentUser.firstName +" "+ $rootScope.currentUser.lastName]);
             CourseServices
                 .createCourse(course)
                 .then(function(response){
@@ -23,10 +24,7 @@
                         console.log("create fail");
                     }
                 });
-
         }
-
-
     }
 
 })();

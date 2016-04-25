@@ -6,26 +6,39 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <em class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Courses</h1>
             <div ng-show="currentUser"><strong>My Courses:</strong>
                 <div ng-show="message">{{message}}</div>
 
                 <ul ng-repeat="course in courses" class="list-group">
                     <li class="list-group-item">
-                        <strong><a ng-click="select(course)" href="#/enrollments">{{course.title}}</a></strong>
+                        <strong><a ng-click="select(course)" ng-show="currentUser.roles.indexOf('instructor') >= 0" href="#/students">{{course.title}}</a></strong>
+                        <strong><a ng-click="select(course)" ng-show="currentUser.roles.indexOf('student') >= 0" href="#/enrollments">{{course.title}}</a></strong>
                         <div><strong ng-repeat = "instructor in course.instructors">{{instructor}}</strong> | {{course.school}}</div>
                         <div class="text-muted"><small>{{course.info}}</small></div>
                     </li>
                 </ul>
             </div>
 
-            <strong>All Courses:</strong>
+            <h3>All Courses:</h3>
             <ul ng-repeat="course in allcourses" class="list-group">
                 <li class="list-group-item">
                     <strong><a ng-click="select(course)" href="#/detail">{{course.title}}</a></strong>
                     <div><strong ng-repeat = "instructor in course.instructors">{{instructor}}</strong> | {{course.school}}</div>
                     <div class="text-muted"><small>{{course.info}}</small></div>
+                </li>
+            </ul>
+            <h3>Udacity Courses:</h3>
+            <ul ng-repeat="course in udacity" class="list-group">
+                <li class="list-group-item">
+                    <strong><a ng-click="select(course)" href="#/detail">{{course.title}}</a></strong>
+                    <em>{{course.subtitle}}</em>
+                    <div ng-repeat="instructor in instructors[$index]">{{instructor}}</div>
+                    <div class="text-muted"><small>{{course.summary}}</small></div>
+
+                       <!-- <div ng-show="course.instructors && course.instructors[0].bio">Instructor Bio:</div>
+                        <small> {{course.instructors[0].bio}}</small></div>-->
                 </li>
             </ul>
         </div>

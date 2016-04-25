@@ -6,7 +6,7 @@
         .module("LearningMgmtApp")
         .controller("CourseController", CourseController);
 
-    function CourseController($scope, $location, CourseServices, $rootScope) {
+    function CourseController($scope, $location, CourseServices, CourseraServices, $rootScope) {
         $scope.$location = $location;
 
         if($rootScope.currentUser){
@@ -21,6 +21,30 @@
                     $scope.courses = response.data;
                 });
         }
+
+        $scope.images = [];
+        CourseraServices
+            .findCourse()
+            .then(function(response){
+                $scope.udacity = response.data.courses;
+                $scope.instructors = [];
+                var courses = $scope.udacity;
+                console.log(courses);
+                console.log("udacity",response.data.courses);
+                console.log("udacity",response.data.courses[2].instructors[0]["image"]);
+                for(var i in $scope.udacity){
+                    if(courses[i].instructors) {
+                        var instructors = courses[i].instructors;
+                        var elem = [];
+                        for (var j in instructors) {
+                            elem.push(instructors[j]["name"]);
+                        }
+                        $scope.instructors.push(elem);// a list of list
+                        //$scope.images.push(courses[i].instructors[0]["image"]);
+                    }
+                }
+            });
+
         CourseServices
             .findAllCourses()
             .then(function(response){

@@ -18,7 +18,8 @@ module.exports = function(db, mongoose) {
         createCourse: createCourse,
         findAllCourses : findAllCourses,
         studentEnroll: studentEnroll,
-        studentWithdrew: studentWithdrew
+        studentWithdrew: studentWithdrew,
+        searchCoursesWithKeyword : searchCoursesWithKeyword
         /*
         updateUser: updateUser,
         deleteUserById : deleteUserById,
@@ -140,6 +141,20 @@ module.exports = function(db, mongoose) {
                     })
                 }
             })
+        return deferred.promise;
+    }
+
+    function searchCoursesWithKeyword(keyword){
+        var deferred = q.defer();
+        CourseModel
+            .find({"title": {'$regex' : '.*' + keyword + '.*'}}, function(err, doc){
+                if(err){
+                    deferred.reject(err);
+            }else{
+                    deferred.resolve(doc);
+                    console.log("is the model search result",doc);
+                }
+        });
         return deferred.promise;
     }
     /*

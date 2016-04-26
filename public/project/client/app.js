@@ -3,5 +3,5 @@
  */
 (function(){
     angular
-        .module("LearningMgmtApp", ["ngRoute"]);
+        .module("LearningMgmtApp", ["ngRoute","ngSanitize"]);
 })();

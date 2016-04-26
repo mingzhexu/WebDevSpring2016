@@ -18,14 +18,16 @@
             getCurrentCourse: getCurrentCourse,
             studentEnroll: studentEnroll,
             getInstructors: getInstructors,
-            studentWithdrew: studentWithdrew
+            studentWithdrew: studentWithdrew,
+            searchCoursesByKeyword: searchCoursesByKeyword,
+            setResult: setResult,
+            getResult: getResult
             /*
             updateCourse: updateCourse,
             deleteCourseById : deleteCourseById,
             findCoursesById: findCoursesById,
-            searchCoursesByKeyword: searchCoursesByKeyword,
-            setResult: setResult,
-            getResult: getResult,
+
+
             */
 
         };
@@ -74,22 +76,22 @@
         function studentWithdrew(student, course){
             return $http.put("/api/project/course/"+course._id+"/student/"+student._id, student);
         }
-/*
-        function searchCoursesByKeyword(keyword, callback)
+
+        function searchCoursesByKeyword(keyword)
         {
-            var arrayLength = courses.length;
-            var result = [];
-            for (var i = 0; i < arrayLength; i++)
-            {
-                var up = courses[i].title.toUpperCase();
-                var key = keyword.toUpperCase();
-                if(up.indexOf(key) > -1 )
-                {
-                    result.push(courses[i]);
-                }
-            }
-            callback(result);
+            return $http.get("/api/project/course/keyword/"+keyword);
         }
+
+        function setResult(result)
+        {
+            $rootScope.result = result;
+        }
+
+        function getResult () {
+            return $rootScope.result;
+        }
+/*
+
 
         function findCoursesById(ids, callback)
         {

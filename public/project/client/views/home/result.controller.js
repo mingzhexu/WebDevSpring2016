@@ -6,13 +6,8 @@
         .module("LearningMgmtApp")
         .controller("ResultController", ResultController);
 
-    function ResultController($scope, $location, CourseServices, $rootScope) {
+    function ResultController($scope, $location, $rootScope, CourseServices) {
         $scope.$location = $location;
-
-        var callback = function(response){
-            $scope.courses = response;
-            console.log($scope.courses);
-        }
-        CourseServices.getResult(callback);
+        $scope.courses = $rootScope.result;
     }
 })();

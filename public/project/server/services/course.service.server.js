@@ -14,6 +14,7 @@ module.exports = function(app, userModel, courseModel) {
     app.get("/api/project/courses", findAllCourses);
     app.post("/api/project/student/:student_id/course/:course_id", studentEnroll);
     app.put("/api/project/course/:courseId/student/:studentId", studentWithdrew);
+    app.get("/api/project/course/keyword/:keyword", searchCoursesWithKeyword);
 
     function findCourseByUser(req, res){
         var userId = req.params["userId"];
@@ -109,6 +110,19 @@ module.exports = function(app, userModel, courseModel) {
                     res.status(400).send(err);
                 }
             );
+    }
+
+    function searchCoursesWithKeyword(req, res){
+        var keyword = req.params["keyword"];
+        courseModel
+            .searchCoursesWithKeyword(keyword)
+            .then(function(doc){
+                res.json(doc);
+                console.log("in service", doc);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
     }
 /*
     function getUserById(req, res)

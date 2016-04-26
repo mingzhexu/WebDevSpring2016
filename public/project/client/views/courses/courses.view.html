@@ -23,23 +23,36 @@
 
             <h3>All Courses:</h3>
             <ul ng-repeat="course in allcourses" class="list-group">
+                <div class="well">
                 <li class="list-group-item">
                     <strong><a ng-click="select(course)" href="#/detail">{{course.title}}</a></strong>
                     <div><strong ng-repeat = "instructor in course.instructors">{{instructor}}</strong> | {{course.school}}</div>
                     <div class="text-muted"><small>{{course.info}}</small></div>
                 </li>
+                </div>
             </ul>
-            <h3>Udacity Courses:</h3>
-            <ul ng-repeat="course in udacity" class="list-group">
-                <li class="list-group-item">
-                    <strong><a ng-click="select(course)" href="#/detail">{{course.title}}</a></strong>
-                    <em>{{course.subtitle}}</em>
-                    <div ng-repeat="instructor in instructors[$index]">{{instructor}}</div>
-                    <div class="text-muted"><small>{{course.summary}}</small></div>
+            <ul ng-repeat="course in udacity" class="media-list">
+                <div class="well">
+                <li class="media">
+                    <div class="media-left">
+                    <img ng-src="{{course.image}}" WIDTH=150 HEIGHT=100></div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a ng-click="select(course)" href="#/detail">{{course.title}}</a>
+                        <div><small class="text-left">{{course.subtitle}}</small></div></h4>
+                        <div class="text-capitalize text-right">{{course.level}}</div>
 
-                       <!-- <div ng-show="course.instructors && course.instructors[0].bio">Instructor Bio:</div>
-                        <small> {{course.instructors[0].bio}}</small></div>-->
+                        <div class="text-muted" ng-bind-html="course.short_summary"></div>
+                    </div>
+                       <!--
+
+                       <div ng-show="course.instructors && course.instructors[0].bio">Instructor Bio:</div>
+                        <small> {{course.instructors[0].bio}}</small></div>
+
+                        <strong ng-repeat="instructor in instructors[$index]">{{instructor}}</strong>
+
+                        <div ng-repeat="image in images[$index]"><img ng-src="{{image}}" class="img-circle pull-xs-left" WIDTH=105 HEIGHT=97 alt="Description"></div>-->
                 </li>
+                </div>
             </ul>
         </div>
     </div>

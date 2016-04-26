@@ -15,7 +15,6 @@
                 .then(function(response){
                     console.log(response.data, "length is ", response.data.length);
                     if(response.data.length == 0){
-                        console.log("legnth is 0");
                         $scope.message = "You haven't got any course yet!"
                     }
                     $scope.courses = response.data;
@@ -36,11 +35,13 @@
                     if(courses[i].instructors) {
                         var instructors = courses[i].instructors;
                         var elem = [];
+                        var images = [];
                         for (var j in instructors) {
+                            images.push(instructors[j]["image"]);
                             elem.push(instructors[j]["name"]);
                         }
+                        $scope.images.push(images);
                         $scope.instructors.push(elem);// a list of list
-                        //$scope.images.push(courses[i].instructors[0]["image"]);
                     }
                 }
             });

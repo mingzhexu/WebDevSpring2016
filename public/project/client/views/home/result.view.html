@@ -8,11 +8,13 @@
             <h1 class="page-header">Search Result <small> - Related Courses</small></h1>
 
             <ul ng-repeat="course in courses" class="list-group">
-                <li class="list-group-item">
-                    <strong>{{course.title}}</strong>
-                    <div>{{course.instructor}} | {{course.school}}</div>
-                    <div class="text-muted"><small>{{course.info}}</small></div>
-                </li>
+                <div class="well">
+                    <li class="list-group-item">
+                        <strong><a ng-click="select(course)" href="#/detail">{{course.title}}</a></strong>
+                        <div>{{course.instructor}} | {{course.school}}</div>
+                        <div class="text-muted"><small>{{course.info}}</small></div>
+                    </li>
+                </div>
             </ul>
         </div>
     </div>

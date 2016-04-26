@@ -6,11 +6,22 @@
         .module("LearningMgmtApp")
         .controller("DetailController", DetailController);
 
-    function DetailController($scope, $location, CourseServices,UserServices, $rootScope) {
+    function DetailController($scope, $location, CourseServices, UserServices, $rootScope) {
         $scope.$location = $location;
         $scope.message = null;
 
-        $scope.course = CourseServices.getCurrentCourse();
+        var course = CourseServices.getCurrentCourse();
+
+        if(course._id == null){
+            $scope.course = course;
+            console.log($scope.course);
+            $scope.homepage = $scope.course.homepage;
+        }else{
+            $scope.localcourse = course;
+            console.log($scope.localcourse);
+        }
+
+
 
 
         $scope.register = function(course){

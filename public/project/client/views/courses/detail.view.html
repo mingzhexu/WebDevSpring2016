@@ -7,12 +7,35 @@
 <body>
 <div class="container-fluid">
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">{{course.title}}<div><small>School: {{course.school}}</small></div></h1>
-        <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
-        <h4>About This Course: </h4>
-        <div class="text-success">Instructor: {{course.instructors}}</div>
-        <p>{{course.description}}</p>
+        <div ng-show="course!=null">
+            <h1 class="page-header"><a ng-href={{homepage}}>{{course.title}}</a>
+                <div><small ng-show="course.affiliates[0]['name'].length > 0">Offered By: {{course.affiliates[0]["name"]}}</small></div>
+            </h1>
+            <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+            <div class="well">
+                <h3>About This Course: </h3>
+                <p ng-bind-html="course.summary"></p>
+            </div>
+            <div class="well">
+            <h3>Instructor information: <div><small>{{course.instructors[0].bio}}</small></div></h3></div>
+        </div>
+        <div ng-show="localcourse!=null">
+            <h1 class="page-header">{{localcourse.title}}
+                <div><small>Offered By:
+                    <em ng-repeat="instructor in localcourse.instructors">{{instructor}}</em> </small></div>
+            </h1>
+            <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+            <div class="well">
+                <h3>About This Course: </h3>
+                <p>{{localcourse.description}}</p>
+            </div>
+            <div class="well">
+                <h3>Instructor information: <div>
+                    <small ng-repeat="instructor in localcourse.instructors">{{instructor}}</small></div></h3>
+            </div>
+        </div>
         <button type="button" class="btn btn-default" ng-hide="currentUser.roles.indexOf('instructor') >= 0"><a  ng-click="register(course)">Register</a></button>
+
     </div>
 </div>
 </body>

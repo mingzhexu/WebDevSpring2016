@@ -6,7 +6,7 @@
         .module("LearningMgmtApp")
         .controller("CourseController", CourseController);
 
-    function CourseController($scope, $location, CourseServices, CourseraServices, $rootScope) {
+    function CourseController($scope, $location, CourseServices, UdacityServices, $rootScope) {
         $scope.$location = $location;
 
         if($rootScope.currentUser){
@@ -22,7 +22,7 @@
         }
 
         $scope.images = [];
-        CourseraServices
+        UdacityServices
             .findCourse()
             .then(function(response){
                 $scope.udacity = response.data.courses;

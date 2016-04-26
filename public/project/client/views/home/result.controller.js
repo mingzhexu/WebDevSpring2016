@@ -6,8 +6,7 @@
         .module("LearningMgmtApp")
         .controller("ResultController", ResultController);
 
-    function ResultController($scope, $location, $rootScope, CourseServices) {
+    function ResultController($scope, $location) {
         $scope.$location = $location;
-        $scope.courses = $rootScope.result;
     }
 })();

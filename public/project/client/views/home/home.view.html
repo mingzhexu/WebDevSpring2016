@@ -12,13 +12,26 @@
                     <div class="col-md-4"><button class="btn btn-danger" ng-click="search(keyword)" type="button"><span class="glyphicon glyphicon glyphicon-search"></span></button></div>
                 </div>
             </div>
-            <strong>{{courses[0].title}}</strong>
+            <h3 ng-show="courses.length>0">Result:</h3>
             <ul ng-repeat="course in courses" class="list-group">
                 <li class="list-group-item">
-                    <strong>{{course.title}}</strong>
+                    <strong><a ng-click="select(course)" href="#/detail">{{course.title}}</a></strong>
                     <div>{{course.instructor}} | {{course.school}}</div>
                     <div class="text-muted"><small>{{course.info}}</small></div>
                 </li>
+            </ul>
+            <ul ng-repeat="course in udacity" class="media-list">
+                <div class="well">
+                    <li class="media">
+                        <div class="media-left"><img ng-src="{{course.image}}" WIDTH=150 HEIGHT=100></div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a ng-click="select(course)" href="#/detail">{{course.title}}</a>
+                                <div><small class="text-left">{{course.subtitle}}</small></div></h4>
+                            <div class="text-capitalize text-right">{{course.level}}</div>
+                            <div class="text-muted" ng-bind-html="course.short_summary"></div>
+                        </div>
+                    </li>
+                </div>
             </ul>
         </div>
     </div>

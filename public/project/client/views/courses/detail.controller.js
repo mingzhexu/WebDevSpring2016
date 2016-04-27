@@ -22,12 +22,11 @@
         }
 
 
-
-
         $scope.register = function(course){
             if($rootScope.currentUser){
+                var courseCur = CourseServices.getCurrentCourse();
                 CourseServices
-                    .studentEnroll(course, $rootScope.currentUser)
+                    .studentEnroll(courseCur, $rootScope.currentUser)
                     .then(function(response){
                         console.log("register successfully");
                         $location.url("/courses");

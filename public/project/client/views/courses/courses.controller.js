@@ -56,5 +56,15 @@
         $scope.select = function(course){
             CourseServices.setCurrentCourse(course);
         }
+
+        $scope.deleteCourse =function(course){
+            CourseServices
+                .deleteCourse(course)
+                .then(function(response){
+                    var index = $scope.courses.indexOf(course);
+                    $scope.courses.splice(index, 1);
+                    console.log("removed");
+                });
+        }
     }
 })();

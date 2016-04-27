@@ -45,6 +45,13 @@
                     }
                 });
         }
+
+        UserServices.findAllUsers()
+            .then(function(response){
+                $scope.users = response.data;
+                console.log($scope.users);
+            });
+
     }
 
 })();

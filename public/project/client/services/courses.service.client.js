@@ -21,7 +21,8 @@
             studentWithdrew: studentWithdrew,
             searchCoursesByKeyword: searchCoursesByKeyword,
             setResult: setResult,
-            getResult: getResult
+            getResult: getResult,
+            deleteCourse: deleteCourse
             /*
             updateCourse: updateCourse,
             deleteCourseById : deleteCourseById,
@@ -66,6 +67,7 @@
         }
 
         function studentEnroll(course, student){
+            console.log(course);
             return $http.post("/api/project/student/"+student._id+"/course/"+course._id, student);
         }
 
@@ -89,6 +91,10 @@
 
         function getResult () {
             return $rootScope.result;
+        }
+
+        function deleteCourse(course){
+            return $http.delete("/api/project/course", course);
         }
 /*
 

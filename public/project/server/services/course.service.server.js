@@ -15,6 +15,7 @@ module.exports = function(app, userModel, courseModel) {
     app.post("/api/project/student/:student_id/course/:course_id", studentEnroll);
     app.put("/api/project/course/:courseId/student/:studentId", studentWithdrew);
     app.get("/api/project/course/keyword/:keyword", searchCoursesWithKeyword);
+    app.delete("/api/project/course", deleteCourse);
 
     function findCourseByUser(req, res){
         var userId = req.params["userId"];
@@ -119,6 +120,19 @@ module.exports = function(app, userModel, courseModel) {
             .then(function(doc){
                 res.json(doc);
                 console.log("in service", doc);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
+    }
+
+    function deleteCourse(req, res){
+        var course = req.body;
+        courseModel
+            .deleteCourse(course)
+            .then(function(doc){
+                res.json(doc);
+                console.log("deleted");
             },
             function(err){
                 res.status(400).send(err);

@@ -22,7 +22,7 @@
         <div ng-show="localcourse!=null">
             <h1 class="page-header">{{localcourse.title}}
                 <div><small>Offered By:
-                    <em ng-repeat="instructor in localcourse.instructors">{{instructor}}</em> </small></div>
+                    <em>{{localcourse.school}}</em>
             </h1>
             <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
             <div class="well">
@@ -30,7 +30,7 @@
                 <p>{{localcourse.description}}</p>
             </div>
             <div class="well">
-                <h3>Instructor information: <div>
+                <h3>Instructor <div>
                     <small ng-repeat="instructor in localcourse.instructors">{{instructor}}</small></div></h3>
             </div>
         </div>

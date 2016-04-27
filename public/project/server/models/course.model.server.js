@@ -19,7 +19,8 @@ module.exports = function(db, mongoose) {
         findAllCourses : findAllCourses,
         studentEnroll: studentEnroll,
         studentWithdrew: studentWithdrew,
-        searchCoursesWithKeyword : searchCoursesWithKeyword
+        searchCoursesWithKeyword : searchCoursesWithKeyword,
+        deleteCourse: deleteCourse
         /*
         updateUser: updateUser,
         deleteUserById : deleteUserById,
@@ -155,6 +156,20 @@ module.exports = function(db, mongoose) {
                     console.log("is the model search result",doc);
                 }
         });
+        return deferred.promise;
+    }
+
+    function deleteCourse(course){
+        var deferred = q.defer();
+        courseId = mongoose.Types.ObjectId(course._id);
+        CourseModel.remove({_id:courseId},
+            function(err,result){
+                if(err){
+                    deferred.reject(err);
+                }else{
+                    deferred.resolve(result);
+                }
+            });
         return deferred.promise;
     }
     /*

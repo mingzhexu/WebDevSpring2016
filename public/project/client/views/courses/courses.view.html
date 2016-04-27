@@ -6,18 +6,25 @@
 </head>
 <body>
     <div class="container-fluid">
-        <em class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Courses</h1>
             <div ng-show="currentUser"><strong>My Courses:</strong>
                 <div ng-show="message">{{message}}</div>
 
                 <ul ng-repeat="course in courses" class="list-group">
+                    <div class="well">
                     <li class="list-group-item">
                         <strong><a ng-click="select(course)" ng-show="currentUser.roles.indexOf('instructor') >= 0" href="#/students">{{course.title}}</a></strong>
                         <strong><a ng-click="select(course)" ng-show="currentUser.roles.indexOf('student') >= 0" href="#/enrollments">{{course.title}}</a></strong>
+                        <a ng-click="deleteCourse(course)" ng-show="currentUser.roles.indexOf('instructor')>= 0">
+                            <button class="btn btn-danger">
+                                <span class="pull-right glyphicon glyphicon-remove"></span>
+                            </button>
+                        </a>
                         <div><strong ng-repeat = "instructor in course.instructors">{{instructor}}</strong> | {{course.school}}</div>
-                        <div class="text-muted"><small>{{course.info}}</small></div>
+                        <div class="text-muted"><small>{{course.description}}</small></div>
                     </li>
+                    </div>
                 </ul>
             </div>
 
@@ -54,6 +61,7 @@
                 </li>
                 </div>
             </ul>
+            </div>
         </div>
     </div>
 </body>

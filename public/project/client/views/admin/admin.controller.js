@@ -13,14 +13,12 @@
         $scope.add    = add;
         $scope.select = select;
 
-        $scope.sortType     = 'username'; // set the default sort type
-        $scope.sortReverse  = false;  // set the default sort order
-
         function init() {
             AdminServices
                 .adminFindAllUsers()
                 .then(handleSuccess, handleError);
         }
+
         init();
 
         function remove(user)

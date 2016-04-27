@@ -49,10 +49,6 @@
                 .when("/about", {
                     templateUrl: "views/home/about.view.html"
                 })
-                .when("/result", {
-                    templateUrl: "views/home/result.view.html",
-                    controller: "ResultController"
-                })
                 .when("/students", {
                     templateUrl: "views/users/student.view.html",
                     controller: "StudentController"

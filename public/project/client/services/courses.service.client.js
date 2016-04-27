@@ -22,14 +22,8 @@
             searchCoursesByKeyword: searchCoursesByKeyword,
             setResult: setResult,
             getResult: getResult,
-            deleteCourse: deleteCourse
-            /*
-            updateCourse: updateCourse,
-            deleteCourseById : deleteCourseById,
-            findCoursesById: findCoursesById,
-
-
-            */
+            deleteCourse: deleteCourse,
+            updateCourse: updateCourse
 
         };
 
@@ -96,64 +90,12 @@
         function deleteCourse(course){
             return $http.delete("/api/project/course", course);
         }
-/*
 
-
-        function findCoursesById(ids, callback)
+        function updateCourse(courseId, course)
         {
-            var result = [];
-            for(var i = 0; i < courses.length; i++){
-                var find = ids.indexOf(courses[i].id);
-                if(find > -1){
-                    result.push(courses[i]);
-                }
-            }
-            callback(result);
+
+            return $http.put("/api/project/course/"+courseId, course);
         }
-
-
-
-        function deleteCourseById(courseId, callback)
-        {
-            var arrayLength = users.length;
-            for (var i = 0; i < arrayLength; i++)
-            {
-                if(courses[i].id == courseId)
-                {
-                    courses.splice(i, 1);
-                    //console.log("delete executed in service?");
-                    callback(courses);
-                }
-            }
-        }
-
-        function updateCourse(courseId, course, callback)
-        {
-            var arrayLength = users.length;
-            for (var i = 0; i < arrayLength; i++)
-            {
-                if(courses[i]._id == courseId)
-                {
-                    courses[i] = course;
-                    callback(course);
-                }
-            }
-            callback(null);
-        }
-
-        function setResult(result, callback)
-        {
-            $rootScope.result = result;
-            //console.log("set the current user: ");
-            //console.log($rootScope.currentUser);
-            callback(result);
-        }
-
-        function getResult (callback) {
-            callback($rootScope.result);
-        }
-
- */
     }
 
 })();

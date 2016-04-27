@@ -21,6 +21,14 @@ module.exports = function(app, userModel) {
     app.delete("/api/project/admin/user/:id", deleteUser);
     app.get("/api/project/admin/sort", auth, sortCategory);
 
+
+    app.get("/api/project/admin/user", adminFindAllUsers)
+    app.get("/api/project/admin/user/:userId", adminFindUserById);
+    app.post("/api/project/admin/user", adminCreateUser);
+    app.delete("/api/project/admin/user/:userId", adminDeleteUserById)
+    app.put("/api/project/admin/user/:userId", adminUpdateUser);
+
+
     function authorized(req, res, next) {
         if (!req.isAuthenticated()) {
             res.send(401);
@@ -259,4 +267,126 @@ module.exports = function(app, userModel) {
         }
     }
 
+    //admin
+
+    function adminFindAllUsers(req, res) {
+        userModel
+            .findAllUsers()
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function () {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function adminDeleteUserById(req, res) {
+        userModel
+            .deleteUserById(req.params.userId)
+            .then(
+                function(user){
+                    return userModel.findAllUsers();
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function(users){
+                    res.json(users);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function adminFindUserById(req, res) {
+        var userId = req.params.userId;
+        userModel
+            .findUserById(userId)
+            .then(
+                // login user if promise resolved
+                function (doc) {
+                    res.json(doc);
+                },
+                // send error if promise rejected
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function adminCreateUser(req, res) {
+        var newUser = req.body;
+        if (newUser.roles && newUser.roles.length > 1) {
+            newUser.roles = newUser.roles.split(",");
+        } else {
+            newUser.roles = ["student"];
+        }
+
+        // first check if a user already exists with the username
+        userModel
+            .findUserByUsername(newUser.username)
+            .then(
+                function (user) {
+                    // if the user does not already exist
+                    if (user == null) {
+                        // create a new user
+                        return userModel.createUser(newUser)
+                            .then(
+                                // fetch all the users
+                                function () {
+                                    return userModel.findAllUsers();
+                                },
+                                function (err) {
+                                    res.status(400).send(err);
+                                }
+                            );
+                        // if the user already exists, then just fetch all the users
+                    } else {
+                        return userModel.findAllUsers();
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function () {
+                    res.status(400).send(err);
+                }
+            )
+    }
+
+    function adminUpdateUser(req, res) {
+        var newUser = req.body;
+        if (typeof newUser.roles == "string") {
+            newUser.roles = newUser.roles.split(",");
+        }
+
+        userModel
+            .updateUser(req.params.userId, newUser)
+            .then(
+                function (user) {
+                    return userModel.findAllUsers();
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
 };

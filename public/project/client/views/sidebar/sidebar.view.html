@@ -15,6 +15,7 @@
                 <li><a href="#/about" ng-class="{'active': $location.url() == '/about'}" ng-hide="currentUser">About<span class="sr-only">(current)</span></a></li>
                 <li><a ng-show="currentUser" href="#/profile" ng-class="{'active': $location.url() == '/profile'}" >Profile</a></li>
                 <li><a ng-show="currentUser.roles.indexOf('instructor') >= 0" href="#/instructor" ng-class="{'active': $location.url() == '/profile'}" >Instructor</a></li>
+                <li><a ng-show="currentUser.roles.indexOf('admin') >= 0" href="#/admin" ng-class="{'active': $location.url() == '/profile'}" >Admin</a></li>
             </ul>
         </div>
         </div>

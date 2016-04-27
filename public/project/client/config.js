@@ -57,6 +57,10 @@
                     templateUrl: "views/users/student.view.html",
                     controller: "StudentController"
                 })
+                .when("/admin",{
+                    templateUrl: "views/admin/admin.view.html",
+                    controller: "AdminController"
+                })
                 .otherwise({
                     redirectTo: "/"
                 });

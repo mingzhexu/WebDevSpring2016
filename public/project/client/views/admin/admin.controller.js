@@ -42,10 +42,12 @@
 
         function add(user)
         {
+            console.log(user);
             AdminServices
                 .adminCreateUser(user)
                 .then(
                     function(response) {
+                        console.log("data",response.data);
                         $scope.users = response.data;
                         $scope.user = null;
                     }

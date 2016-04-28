@@ -33,7 +33,7 @@
                         <a class="col-sm-1" ng-click="update(user)"><span class="glyphicon glyphicon-ok"></span></a>
                     </td>
                 </tr>
-                <tr ng-repeat="user in users | orderBy:sortType:sortReverse">
+                <tr ng-repeat="user in users">
                     <td>{{user.username}} </td>
                     <td></td>
                     <td>{{user.firstName}} </td>

@@ -33,7 +33,7 @@ module.exports = function(db, mongoose) {
         var deferred = q.defer();
 
         UserModel.find(function(err,doc){
-            console.log(doc);
+            console.log("find all user",doc);
             if(err){
                 deferred.reject(err);
             }else{
@@ -133,6 +133,7 @@ module.exports = function(db, mongoose) {
                 // reject promise if error
                 deferred.reject(err);
             } else {
+                console.log("mode",doc);
                 // resolve promise
                 deferred.resolve(doc);
             }

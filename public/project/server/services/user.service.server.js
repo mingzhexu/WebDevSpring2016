@@ -327,7 +327,27 @@ module.exports = function(app, userModel) {
             newUser.roles = ["student"];
         }
 
-        // first check if a user already exists with the username
+        userModel.createUser(newUser)
+            .then(
+                // fetch all the users
+                function (doc) {
+                    console.log("in server service",doc);
+                    return userModel.findAllUsers();
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function (users) {
+                    console.log("in server service",users);
+                    res.json(users);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+/*
         userModel
             .findUserByUsername(newUser.username)
             .then(
@@ -335,6 +355,7 @@ module.exports = function(app, userModel) {
                     // if the user does not already exist
                     if (user == null) {
                         // create a new user
+                        console.log(newUser);
                         return userModel.createUser(newUser)
                             .then(
                                 // fetch all the users
@@ -356,12 +377,13 @@ module.exports = function(app, userModel) {
             )
             .then(
                 function (users) {
+                    console.log(users);
                     res.json(users);
                 },
-                function () {
+                function (err) {
                     res.status(400).send(err);
                 }
-            )
+            )*/
     }
 
     function adminUpdateUser(req, res) {
